@@ -1,0 +1,33 @@
+{
+  "functional_checks": [
+    "sk-workspace: movement toggles and ranges",
+    "sk-workspace: keybind capture and activation",
+    "sk-workspace: player teleport and spectate",
+    "sk-workspace: player search and NPC actions",
+    "sk-workspace: waypoint creation and travel",
+    "sk-workspace: profile save and load",
+    "sk-workspace: editor simulation",
+    "sk-workspace: appearance and stop-all",
+    "sk-workspace: minimize and restore",
+    "sk-compact: movement toggles and ranges",
+    "sk-compact: keybind capture and activation",
+    "sk-compact: player teleport and spectate",
+    "sk-compact: player search and NPC actions",
+    "sk-compact: waypoint creation and travel",
+    "sk-compact: profile save and load",
+    "sk-compact: editor simulation",
+    "sk-compact: appearance and stop-all",
+    "sk-compact: minimize and restore",
+    "host state restoration updates the preview",
+    "64 responsive views without horizontal overflow"
+  ],
+  "js_errors": [],
+  "responsive_overflows": [],
+  "widths_content_px": [
+    1024,
+    768,
+    375,
+    320
+  ],
+  "simulated_only": true
+}

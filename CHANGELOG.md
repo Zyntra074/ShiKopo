@@ -1,5 +1,13 @@
 # Changelog
 
+## Em estudo — nova interface do ShiKopo
+
+- Adicionado protótipo visual com variantes Workspace e Compacto, inspirado nas referências fornecidas pelo proprietário.
+- Fluxos demonstrativos para movimento, visuais, mundo, jogadores/NPCs/equipes, combate, biblioteca, perfis e opções.
+- Validados os fluxos principais e 64 combinações de área, layout e largura, sem erros JavaScript ou transbordamento horizontal.
+- Esta etapa altera apenas o protótipo e a documentação; o runtime Luau permanece na versão 2.1.2.
+
+
 ## 2.1.2 — 25/10/2026
 
 - Arquivo principal renomeado de RespawnHUD.lua para ShiKopo.lua, refletindo o escopo completo do hub.

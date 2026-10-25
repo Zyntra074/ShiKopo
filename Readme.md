@@ -1,5 +1,9 @@
 # ShiKopo 2.1.2
 
+## Nova interface em estudo
+
+O [protótipo visual interativo](prototypes/README.md) apresenta as variantes Workspace e Compacto, com módulos e uma cena demonstrativa. A proposta está em avaliação; o script de uso continua na versão 2.1.2.
+
 Revisão de 25/10/2026, publicada em `Zyntra074/ShiKopo` com os testes e evidências, com correções funcionais, encerramento de recursos e otimizações de trabalho. O programa continua distribuído em **ShiKopo.lua**, um único arquivo, com blocos internos e um runtime compartilhado.
 
 ## Arquivo principal
