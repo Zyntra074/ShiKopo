@@ -1,0 +1,15 @@
+*.mp4
+*.mkv
+*.avi
+.tempmediaStorage/
+.user_uploaded/
+.agents/teamwork/
+__pycache__/
+*.pyc
+.tools/
+.venv/
+.test-results/
+.env
+.env.*
+!.env.example
+DreeZyHub/
