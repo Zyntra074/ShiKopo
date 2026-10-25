@@ -1,4 +1,4 @@
-# Estado real do DreeZy-HUB — 2.1.0
+# Estado real do ShiKopo — 2.1.1
 
 Atualizado em 25/10/2026.
 
@@ -16,7 +16,7 @@ O runtime compartilhado possui:
 - erros limitados e diagnóstico opcional de custo;
 - registro dos 12 blocos em Runtime.Modules para integração/diagnóstico.
 
-O estado acessível fica em getgenv().DreeZyRuntime enquanto ativo. DreeZyHubLoaded só é marcado após a conclusão do bootstrap. Não são usados os contratos antigos de getgenv().DreezHub.Services/Modules como se já existissem.
+O estado acessível fica em getgenv().ShiKopoRuntime enquanto ativo. ShiKopoLoaded só é marcado após a conclusão do bootstrap. A compatibilidade com a marca anterior fica restrita à limpeza da instância anterior e à importação de arquivos. Não são usados contratos Services/Modules antigos como se já existissem.
 
 ## Blocos
 
@@ -34,15 +34,15 @@ A interface e o ConfigManager ficam no mesmo arquivo. Existem cinco abas e 53 co
 | Persistência com validação, backup e rollback | Implementado e testado |
 | Remover execução remota da animação | Concluído |
 | Reexecução após teleporte | Usa cópia local explícita, sujeita ao suporte do executor |
-| Testes nativos Luau e integração completa | 143 casos aprovados e quatro fontes Lua compilados |
+| Testes nativos Luau e integração completa | 150 casos aprovados e quatro fontes Lua compilados |
 | Refatorar para arquivos modules/ e ui/ | Não implementado; não é pré-requisito desta revisão |
 | Medição de FPS, física e permissões em jogo real | Não realizada |
 | Confirmar origem e licença | Pendente de informação do autor |
-| Publicação em GitHub | Revisão 2.1.0 e suíte de testes publicadas em Zyntra074/ShiKopo, main |
+| Publicação em GitHub | Revisão 2.1.1 e suíte de testes publicadas em Zyntra074/ShiKopo, main |
 
 ## Manutenção
 
 Validar sintaxe com Luau nativo e executar tests/run_all.py após mudanças funcionais. Comparações do simulador são evidência de trabalho/ciclo de vida, sem substituir perfil de desempenho no cliente real.
 
-Por solicitação explícita do proprietário em 25/10/2026, GitHub é a fonte oficial do script e cada alteração concluída e validada deve ser publicada em Zyntra074/ShiKopo, main. As orientações antigas para outro repositório foram substituídas. Cópias locais são temporárias para preparação e testes. A suíte completa está em tests/ e as evidências em reports/2026-10-25/.
+Por solicitação explícita do proprietário em 25/10/2026, GitHub é a fonte oficial do script e cada alteração concluída e validada deve ser publicada em Zyntra074/ShiKopo, main. As orientações antigas para outro repositório foram substituídas. Cópias locais são temporárias para preparação e testes. A suíte completa está em tests/ e as evidências da versão atual em reports/2026-10-25-shikopo/. A pasta reports/2026-10-25 conserva a entrega histórica.
 

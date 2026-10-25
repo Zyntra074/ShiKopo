@@ -1,5 +1,16 @@
 # Changelog
 
+## 2.1.1 — 25/10/2026
+
+- Hub renomeado para ShiKopo no menu, boas-vindas, notificações, diagnóstico e nomes internos.
+- Estado ativo exposto em ShiKopoRuntime/ShiKopoLoaded; nomes da interface e ações também atualizados.
+- Configurações e favoritos passam a usar ShiKopo/, com importação dos arquivos antigos sem sobrescrever os atuais nem apagar os originais.
+- Reexecução após teleporte usa ShiKopo/RespawnHUD.lua atualizado pelo usuário.
+- Instância da marca anterior é encerrada antes da inicialização quando oferece limpeza.
+- Testes e documentação atualizados; sete regressões adicionadas, totalizando 150 casos.
+- Evidências anteriores preservadas como registro histórico; créditos de origem mantidos na documentação.
+
+
 ## Publicação completa — 25/10/2026
 
 - Recuperados e publicados os 13 arquivos da suíte de testes que faltavam no GitHub.

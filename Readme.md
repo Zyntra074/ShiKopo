@@ -1,6 +1,12 @@
-# DreeZy-HUB 2.1.0
+# ShiKopo 2.1.1
 
 Revisão de 25/10/2026, publicada em `Zyntra074/ShiKopo` com os testes e evidências, com correções funcionais, encerramento de recursos e otimizações de trabalho. O programa continua distribuído em **RespawnHUD.lua**, um único arquivo, com blocos internos e um runtime compartilhado.
+
+## Nome e arquivos anteriores
+
+O hub agora se chama **ShiKopo**, incluindo menu, notificações e diagnóstico. As novas configurações e favoritos ficam em `ShiKopo/`. Quando há arquivos em `DreeZyHub/` e o destino ainda não existe, a inicialização copia `Config.json`, `Config.json.bak` e `Favorites.json` sem remover os originais. Os arquivos novos têm prioridade; o carregamento de configurações continua manual. Falhas na importação são registradas no diagnóstico.
+
+A cópia de reexecução após teleporte deve ser atualizada pelo usuário em `ShiKopo/RespawnHUD.lua`; código antigo não é importado automaticamente.
 
 ## Usar a versão corrigida
 
@@ -53,10 +59,10 @@ Sem a API Drawing, o restante da interface inicializa. Os controles de ESP/High 
 
 O salvamento é manual pelos botões de Configs:
 
-- DreeZyHub/Config.json: esquema 2, com valores e atalhos.
-- DreeZyHub/Config.json.bak: cópia anterior quando disponível e decodificável.
-- DreeZyHub/Config.json.tmp: etapa de escrita, removida após sucesso se o executor oferece exclusão.
-- DreeZyHub/Favorites.json: favoritos e sua ordem.
+- ShiKopo/Config.json: esquema 2, com valores e atalhos.
+- ShiKopo/Config.json.bak: cópia anterior quando disponível e decodificável.
+- ShiKopo/Config.json.tmp: etapa de escrita, removida após sucesso se o executor oferece exclusão.
+- ShiKopo/Favorites.json: favoritos e sua ordem.
 
 Esses caminhos são relativos ao espaço de arquivos do executor, não necessariamente à pasta Downloads.
 
@@ -68,7 +74,7 @@ O carregamento aceita JSON legado e Base64 legado. Valores são validados antes 
 
 Reconectar continua disponível. A reexecução automática está desligada por padrão e **não baixa mais código de um branch remoto mutável**.
 
-Para utilizá-la, o executor precisa oferecer fila após teleporte e leitura de arquivos. Salve uma cópia atualizada de RespawnHUD.lua no caminho **DreeZyHub/RespawnHUD.lua dentro do espaço de arquivos do executor**. A opção agenda o conteúdo dessa cópia local. Se ela ou as APIs não estiverem disponíveis, a interface informa o motivo.
+Para utilizá-la, o executor precisa oferecer fila após teleporte e leitura de arquivos. Salve uma cópia atualizada de RespawnHUD.lua no caminho **ShiKopo/RespawnHUD.lua dentro do espaço de arquivos do executor**. A opção agenda o conteúdo dessa cópia local. Se ela ou as APIs não estiverem disponíveis, a interface informa o motivo.
 
 Alterar o arquivo em Downloads não atualiza automaticamente a cópia do espaço do executor.
 
@@ -76,14 +82,14 @@ Alterar o arquivo em Downloads não atualiza automaticamente a cópia do espaço
 
 Por solicitação do proprietário em 25/10/2026, o GitHub é a fonte oficial do script. Cada alteração concluída deve ser validada e publicada neste repositório junto com testes e documentação pertinentes. As cópias locais são temporárias para preparação e testes. Consulte [AGENTS.md](AGENTS.md).
 
-A suíte e as evidências desta publicação estão em [tests/](tests/) e [reports/2026-10-25/](reports/2026-10-25/).
+A suíte está em [tests/](tests/). A validação da renomeação está em [reports/2026-10-25-shikopo/](reports/2026-10-25-shikopo/); a entrega anterior permanece como evidência histórica em [reports/2026-10-25/](reports/2026-10-25/).
 
 ## Estrutura real
 
 - RespawnHUD.lua: runtime, 12 blocos funcionais, persistência e interface.
 - tests/mock_roblox.lua: tipos e serviços básicos simulados.
 - tests/mock_scheduler.lua: tempo virtual, entrada e consultas espaciais para integração.
-- tests/test_cases.lua: 52 cenários de integração.
+- tests/test_cases.lua: 59 cenários de integração.
 - tests/test_hub.py: executa o programa completo em Luau nativo.
 - tests/run_all.py: executa todas as suítes.
 - tests/verify_syntax.py: usa luau-compile sem modificar o fonte.
@@ -109,7 +115,7 @@ python tests/run_all.py
 
 O instalador baixa o pacote oficial do Luau, confere o SHA-256 fixado e o coloca em .tools/luau. Não instala executores Roblox. Também é possível definir LUAU_BIN e LUAU_COMPILER para ferramentas já disponíveis.
 
-Resultado validado nesta revisão: **143 casos aprovados** — 84 existentes, 52 de integração e 7 regressões sintáticas — além da compilação dos quatro arquivos Lua.
+Resultado validado nesta revisão: **150 casos aprovados** — 84 existentes, 59 de integração e 7 regressões sintáticas — além da compilação dos quatro arquivos Lua.
 
 O simulador permite testar inicialização, cancelamentos, alternâncias, configurações e contadores. Não reproduz física, permissões, rede ou FPS de um cliente real.
 

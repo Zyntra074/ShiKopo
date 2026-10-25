@@ -186,7 +186,7 @@ test("Minimapa limita estruturas e libera pool ao desligar terreno",function()
     r.Modules.MinimapCore:SetTerrain(true)
     r.Modules.MinimapCore:SetEnabled(true)
     MockRoblox.advance(1)
-    local frame=CoreGui.DreeZyVoidware.DreeZyMinimap
+    local frame=CoreGui.ShiKopoGui.ShiKopoMinimap
     local content=frame:GetChildren()[1]
     assert(#content:GetChildren()<=r.MaxMapParts+4,"pool sem limite")
     r.Modules.MinimapCore:SetTerrain(false)
@@ -293,7 +293,7 @@ test("Exceções de jogadores persistem junto com a interface",function()
 end)
 test("Configuração legada com booleano ESP continua legível",function()
     local r=setup()
-    writefile("DreeZyHub/Config.json",'{"espNames":true,"aimbotFOV":150,"unlockKey":"P"}')
+    writefile("ShiKopo/Config.json",'{"espNames":true,"aimbotFOV":150,"unlockKey":"P"}')
     assert(r.ConfigManager:Load(),r.ConfigManager.LastError)
     assert(getgenv().ESPNames==true and r.Modules.AimbotCore:GetFOV()==150)
 end)
@@ -301,30 +301,30 @@ test("JSON malformado recupera backup anterior",function()
     local r=setup()
     set(r,"aimbotFOV",150); assert(r.ConfigManager:Save())
     set(r,"aimbotFOV",200); assert(r.ConfigManager:Save())
-    writefile("DreeZyHub/Config.json","{bad")
+    writefile("ShiKopo/Config.json","{bad")
     assert(r.ConfigManager:Load(),r.ConfigManager.LastError)
     assert(r.ConfigManager.LastRecovery and r.Modules.AimbotCore:GetFOV()==150)
 end)
 test("Tipo inválido é rejeitado antes de alterar estado",function()
     local r=setup()
     local before=r.Modules.AimbotCore:GetFOV()
-    writefile("DreeZyHub/Config.json",'{"aimbotFOV":"bad","respawnEnabled":true}')
+    writefile("ShiKopo/Config.json",'{"aimbotFOV":"bad","respawnEnabled":true}')
     assert(not r.ConfigManager:Load())
     assert(r.Modules.AimbotCore:GetFOV()==before and not r.Modules.RespawnCore:IsEnabled())
 end)
 test("Falha de leitura impede Save e não sobrescreve arquivo",function()
     local r=setup()
     assert(r.ConfigManager:Save())
-    local before=readfile("DreeZyHub/Config.json")
+    local before=readfile("ShiKopo/Config.json")
     r.ConfigManager:Register("broken",{Get=function() error("falha prevista") end,Set=function() end})
     assert(not r.ConfigManager:Save())
-    assert(readfile("DreeZyHub/Config.json")==before)
+    assert(readfile("ShiKopo/Config.json")==before)
 end)
 test("Falha de aplicação retorna false e reverte mudanças",function()
     local r=setup()
     local old=r.Modules.AimbotCore:GetFOV()
     r.ConfigManager:Register("zBroken",{Get=function() return 0 end,Set=function(value) if value==1 then error("falha prevista") end end})
-    writefile("DreeZyHub/Config.json",'{"aimbotFOV":160,"zBroken":1}')
+    writefile("ShiKopo/Config.json",'{"aimbotFOV":160,"zBroken":1}')
     assert(not r.ConfigManager:Load())
     assert(r.Modules.AimbotCore:GetFOV()==old)
 end)
@@ -359,7 +359,7 @@ test("Remover GUI encerra recursos e permite nova inicialização",function()
     local r=setup()
     r.Modules.ESPCore:SetEnabled(true); enemy(); MockRoblox.advance(0.1)
     r.Gui:Destroy()
-    assert(not r.Alive and not getgenv().DreeZyHubLoaded)
+    assert(not r.Alive and not getgenv().ShiKopoLoaded)
     assert(r:GetDiagnostics().Connections==0 and count(r.Resources)==0)
     assert(#Drawing._activeObjects==0)
     assert(boot())
@@ -367,7 +367,7 @@ end)
 test("Falha de bootstrap limpa flag e permite recuperação",function()
     local original=game
     local r=setup({FailService="ContextActionService"})
-    assert(r==nil and not getgenv().DreeZyHubLoaded and getgenv().DreeZyRuntime==nil)
+    assert(r==nil and not getgenv().ShiKopoLoaded and getgenv().ShiKopoRuntime==nil)
     game.GetService=MockRoblox.RestoreGetService
     assert(boot())
 end)
@@ -463,7 +463,7 @@ test("Morte durante reposicionamento preserva o novo destino",function()
 end)
 test("Versão de configuração desconhecida não é aplicada",function()
     local r=setup()
-    writefile("DreeZyHub/Config.json",'{"SchemaVersion":999,"Controls":{}}')
+    writefile("ShiKopo/Config.json",'{"SchemaVersion":999,"Controls":{}}')
     assert(not r.ConfigManager:Load())
 end)
 test("Binds de mouse podem ser consultados em TP Click",function()
@@ -496,6 +496,95 @@ test("Reconstruir favoritos não acumula listeners de entrada",function()
     assert(#UserInputService.InputEnded._listeners==baseline)
 end)
 
+
+test("ShiKopo aparece no menu, boas-vindas e notificações",function()
+    local r=setup()
+    assert(r.Version=="2.1.1" and r.Gui.Name=="ShiKopoGui")
+    assert(getgenv().ShiKopoRuntime==r and getgenv().ShiKopoLoaded)
+    local welcome,title=false,false
+    for _,obj in ipairs(r.Gui:GetDescendants()) do
+        if obj.Text=="Bem-vindo ao ShiKopo" then welcome=true end
+        if obj.Text=="  ShiKopo" then title=true end
+        assert(not tostring(obj.Name):lower():find("dreez",1,true))
+        assert(not tostring(obj.Text or ""):lower():find("dreez",1,true))
+    end
+    assert(welcome and title)
+    local notices=game:GetService("StarterGui")._notifications
+    assert(#notices>0)
+    for _,notice in ipairs(notices) do assert(notice.Title=="ShiKopo") end
+end)
+
+test("Importa configuração e favoritos antigos preservando os originais",function()
+    local config='{"aimbotFOV":175,"unlockKey":"P"}'
+    local favorites='{"Mods":{"Ativar Aimbot":true},"Order":["Ativar Aimbot"]}'
+    local r=setup({BeforeBoot=function()
+        writefile("DreeZyHub/Config.json",config)
+        writefile("DreeZyHub/Favorites.json",favorites)
+    end})
+    assert(readfile("ShiKopo/Config.json")==config and readfile("DreeZyHub/Config.json")==config)
+    assert(readfile("ShiKopo/Favorites.json")==favorites and readfile("DreeZyHub/Favorites.json")==favorites)
+    assert(getgenv().FavoritedMods["Ativar Aimbot"] and getgenv().FavoritedOrder[1]=="Ativar Aimbot")
+    assert(r.ConfigManager:Load() and r.Modules.AimbotCore:GetFOV()==175)
+    assert(r.ConfigManager:Save() and readfile("DreeZyHub/Config.json")==config)
+end)
+
+test("Arquivos ShiKopo existentes têm prioridade sobre os antigos",function()
+    local current='{"aimbotFOV":190}'
+    local favorites='{"Mods":{},"Order":[]}'
+    local r=setup({BeforeBoot=function()
+        writefile("ShiKopo/Config.json",current)
+        writefile("ShiKopo/Favorites.json",favorites)
+        writefile("DreeZyHub/Config.json",'{"aimbotFOV":100}')
+        writefile("DreeZyHub/Favorites.json",'{"Ativar Aimbot":true}')
+    end})
+    assert(readfile("ShiKopo/Config.json")==current and readfile("ShiKopo/Favorites.json")==favorites)
+    assert(not getgenv().FavoritedMods["Ativar Aimbot"])
+    assert(r.ConfigManager:Load() and r.Modules.AimbotCore:GetFOV()==190)
+end)
+
+test("Backup antigo é importado e recupera configuração ilegível",function()
+    local backup='{"aimbotFOV":185}'
+    local r=setup({BeforeBoot=function()
+        writefile("DreeZyHub/Config.json","{bad")
+        writefile("DreeZyHub/Config.json.bak",backup)
+    end})
+    assert(r.ConfigManager:Load() and r.ConfigManager.LastRecovery)
+    assert(r.Modules.AimbotCore:GetFOV()==185 and readfile("DreeZyHub/Config.json.bak")==backup)
+end)
+
+test("Instância anterior é encerrada antes de iniciar ShiKopo",function()
+    local destroyed=0
+    local r=setup({BeforeBoot=function()
+        getgenv().DreeZyRuntime={Alive=true,Destroy=function(self)
+            destroyed=destroyed+1; self.Alive=false
+        end}
+        getgenv().DreeZyHubLoaded=true
+    end})
+    assert(r and r.Alive and destroyed==1)
+    assert(getgenv().DreeZyRuntime==nil and getgenv().DreeZyHubLoaded==nil)
+end)
+
+test("Versão antiga sem limpeza exige reconexão",function()
+    local r=setup({BeforeBoot=function() getgenv().DreeZyHubLoaded=true end})
+    assert(r==nil and getgenv().ShiKopoRuntime==nil)
+    assert(not CoreGui:FindFirstChild("ShiKopoGui"))
+end)
+
+test("Falha de escrita na importação preserva o arquivo antigo",function()
+    local savedWrite, config=writefile, '{"aimbotFOV":170}'
+    local r=setup({BeforeBoot=function()
+        savedWrite=writefile
+        writefile("DreeZyHub/Config.json",config)
+        _G.writefile=function(path,value)
+            if path=="ShiKopo/Config.json" then error("escrita indisponível") end
+            return savedWrite(path,value)
+        end
+    end})
+    _G.writefile=savedWrite
+    assert(r and r.Alive and #r.Errors==1)
+    assert(readfile("DreeZyHub/Config.json")==config and not isfile("ShiKopo/Config.json"))
+end)
+
 local passed,failed=0,0
 for _,entry in ipairs(cases) do
     local name,fn=entry[1],entry[2]
@@ -504,7 +593,7 @@ for _,entry in ipairs(cases) do
     if ok and MockRoblox and #(MockRoblox.Errors or {})>0 then ok,err=false,table.concat(MockRoblox.Errors,"; ") end
     if ok then passed=passed+1; print("[PASS] "..name)
     else failed=failed+1; print("[FAIL] "..name..": "..tostring(err)) end
-    local runtime=getgenv().DreeZyRuntime
+    local runtime=getgenv().ShiKopoRuntime
     if runtime then runtime:Destroy() end
 end
 print(string.format("Integration: %d passed, %d failed.",passed,failed))

@@ -1,7 +1,7 @@
 --[[
     tests/mock_roblox.lua
     Pure-Lua headless Roblox API & Executor Environment Mock
-    Provides genuine state and simulation for testing DreezHub modules offline.
+    Provides genuine state and simulation for testing ShiKopo modules offline.
 ]]
 
 local _nativeLoad=load or loadstring
@@ -16,7 +16,7 @@ _genv.getrenv = function()
     return _G
 end
 _genv.identifyexecutor = function()
-    return "DreezHubHeadlessMock", "1.0.0"
+    return "ShiKopoHeadlessMock", "1.0.0"
 end
 
 -- ============================================================================

@@ -16,7 +16,7 @@ def generate(source: Path) -> str:
         'local function boot()\n'+code+'\nend\n'
         'local function setup(options)\n'
         ' options=options or {}\n'
-        ' local previous=getgenv and getgenv().DreeZyRuntime\n'
+        ' local previous=getgenv and getgenv().ShiKopoRuntime\n'
         ' if previous then previous:Destroy() end\n'
         ' _G.MockRoblox=createMock()\n'
         ' extendMock()\n'
@@ -25,6 +25,7 @@ def generate(source: Path) -> str:
         '  MockRoblox.RestoreGetService=game.GetService\n'
         '  game.GetService=function(self,name) if name==options.FailService then error("Serviço indisponível") end; return MockRoblox.RestoreGetService(self,name) end\n'
         ' end\n'
+        ' if options.BeforeBoot then options.BeforeBoot() end\n'
         ' return boot()\n'
         'end\n'+cases
     )
@@ -36,7 +37,7 @@ def main():
     parser.add_argument("--log",type=Path)
     args=parser.parse_args()
     if not args.luau: parser.error("Defina LUAU_BIN ou passe --luau com o interpretador Luau.")
-    with tempfile.TemporaryDirectory(prefix="dreezy-tests-") as folder:
+    with tempfile.TemporaryDirectory(prefix="shikopo-tests-") as folder:
         generated=Path(folder)/"integration.luau"
         generated.write_text(generate(args.source),encoding="utf-8")
         result=subprocess.run([args.luau,str(generated)],capture_output=True,text=True,encoding="utf-8",errors="replace",timeout=60)

@@ -24,7 +24,7 @@ for _,signal in ipairs({RunService.RenderStepped,RunService.Heartbeat,RunService
 end
 MockRoblox.advance(10)
 local activeConnections=#RunService.RenderStepped._listeners+#RunService.Heartbeat._listeners+#RunService.Stepped._listeners
-local gui=CoreGui:FindFirstChild("DreeZyVoidware")
+local gui=CoreGui:FindFirstChild("ShiKopoGui") or CoreGui:FindFirstChild("DreeZyVoidware")
 local snow=gui and gui:FindFirstChild("Main") and gui.Main:FindFirstChild("SnowContainer")
 local stats={
  Seconds=10,FrameServiceCallbacks=nativeCallbacks,FrameServiceConnections=activeConnections,
@@ -37,7 +37,7 @@ if runtime and runtime.Stats.ESP then stats.ESPUpdates=runtime.Stats.ESP.Calls e
 print("BENCH:"..HttpService:JSONEncode(stats))
 '''
     program='local _G=getfenv(0)\nmath.randomseed(12345)\n_G.warn=function() end\nlocal function createMock()\n'+mock+'\nend\nlocal MockRoblox=createMock()\n'+shim+'\n'+scene+'\nlocal function boot()\n'+source.read_text(encoding="utf-8")+'\nend\nlocal runtime=boot()\n'+setup+post
-    with tempfile.TemporaryDirectory(prefix="dreezy-bench-") as folder:
+    with tempfile.TemporaryDirectory(prefix="shikopo-bench-") as folder:
         generated=Path(folder)/"bench.luau";generated.write_text(program,encoding="utf-8")
         result=subprocess.run([luau,str(generated)],capture_output=True,text=True,encoding="utf-8",errors="replace",timeout=30)
     if result.returncode: raise RuntimeError(result.stderr+result.stdout[-2000:])

@@ -1,0 +1,32 @@
+[
+  {
+    "name": "smoke",
+    "exit_code": 0,
+    "seconds": 0.234
+  },
+  {
+    "name": "challenger_m1",
+    "exit_code": 0,
+    "seconds": 0.547
+  },
+  {
+    "name": "challenger_probe",
+    "exit_code": 0,
+    "seconds": 0.109
+  },
+  {
+    "name": "challenger_deep",
+    "exit_code": 0,
+    "seconds": 0.094
+  },
+  {
+    "name": "syntax_regressions",
+    "exit_code": 0,
+    "seconds": 0.437
+  },
+  {
+    "name": "integration",
+    "exit_code": 0,
+    "seconds": 2.844
+  }
+]

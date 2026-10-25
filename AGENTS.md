@@ -1,4 +1,4 @@
-# ShiKopo / DreeZy-HUB
+# ShiKopo
 
 ## Repositório e publicação
 

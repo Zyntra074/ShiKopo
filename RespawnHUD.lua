@@ -19,24 +19,27 @@ if not playerGui then return end
 
 -- Ciclo de vida e orçamento de trabalho compartilhados (sem dependências remotas).
 local env = getgenv()
-local previous = env.DreeZyRuntime
+-- Compatibilidade apenas com instâncias e arquivos da marca anterior.
+local Legacy = { RuntimeKey="DreeZyRuntime", LoadedKey="DreeZyHubLoaded", Folder="DreeZyHub" }
+local previous = env.ShiKopoRuntime or env[Legacy.RuntimeKey]
 if previous and previous.Alive then
-    if previous.Initializing then warn("DreeZy-HUB ainda está iniciando."); return end
+    if previous.Initializing then warn("ShiKopo ainda está iniciando."); return end
     previous:Destroy()
-elseif env.DreeZyHubLoaded then
+elseif env.ShiKopoLoaded or env[Legacy.LoadedKey] then
     warn("Uma versão antiga está ativa. Reconecte ao jogo antes de carregar esta versão.")
     return
 end
 local Runtime = {
-    Version = "2.1.0", Alive = true, Initializing = true,
+    Version = "2.1.1", Alive = true, Initializing = true,
     Connections = {}, Resources = {}, Tasks = {}, Cleanups = {}, Jobs = {},
     Errors = {}, FailureSerial = 0, Stats = {}, Modules = {}, FriendCache = {},
     PlayerCache = nil, Profile = "Equilibrado", Profiling = false,
     Intervals = { ESP = 1/30, HighAlert = 1/20, Minimap = 1/20, Hitbox = 0.1 },
     MaxMapParts = 300, MaxInventoryDistance = 500,
 }
-env.DreeZyRuntime = Runtime
-env.DreeZyHubLoaded = false
+env[Legacy.RuntimeKey], env[Legacy.LoadedKey] = nil, nil
+env.ShiKopoRuntime = Runtime
+env.ShiKopoLoaded = false
 env.RegisteredSockets = {}
 env.IsBindingKey = false
 env.CurrentlyDraggingObj = nil
@@ -48,7 +51,7 @@ function Runtime:Report(context, err)
     table.insert(self.Errors, message)
     if not self.LastWarning or now - self.LastWarning > 2 then
         self.LastWarning = now
-        warn("[DreeZy HUB] " .. message)
+        warn("[ShiKopo] " .. message)
     end
 end
 function Runtime:Try(context, callback, ...)
@@ -155,7 +158,7 @@ function Runtime:SetJob(name, enabled, signal, interval, callback)
         job.Busy = true
         local start = self.Profiling and os.clock()
         local profile = self.Profiling and debug and debug.profilebegin and debug.profileend
-        if profile then debug.profilebegin("DreeZy/" .. name) end
+        if profile then debug.profilebegin("ShiKopo/" .. name) end
         self:Try(name, callback, elapsed)
         if profile then debug.profileend() end
         local stat = self.Stats[name]
@@ -251,8 +254,8 @@ function Runtime:Destroy()
     self.Cleanups = {}
     for resource, method in pairs(self.Resources) do pcall(function() resource[method](resource) end) end
     self.Resources, self.FriendCache, self.PlayerCache = {}, {}, nil
-    if env.DreeZyRuntime == self then
-        env.DreeZyRuntime, env.DreeZyHubLoaded = nil, false
+    if env.ShiKopoRuntime == self then
+        env.ShiKopoRuntime, env.ShiKopoLoaded = nil, false
         env.ToggleFreeShiftLockUI, env.ToggleFavHUD = nil, nil
         env.RegisteredSockets, env.IsBindingKey, env.CurrentlyDraggingObj = {}, false, nil
     end
@@ -332,7 +335,7 @@ local MouseUnlocker = (function()
         isUnlocked = unlocked
         if unlocked then
             if not connection then
-                RunService:BindToRenderStep("DreeZyMouseUnlock", Enum.RenderPriority.Camera.Value + 10000, function()
+                RunService:BindToRenderStep("ShiKopoMouseUnlock", Enum.RenderPriority.Camera.Value + 10000, function()
                     local rightClick = UserInputService:IsMouseButtonPressed(Enum.UserInputType.MouseButton2)
                     if not rightClick then
                         UserInputService.MouseBehavior = Enum.MouseBehavior.Default
@@ -346,7 +349,7 @@ local MouseUnlocker = (function()
             connection = true 
         else
             if connection then
-                RunService:UnbindFromRenderStep("DreeZyMouseUnlock")
+                RunService:UnbindFromRenderStep("ShiKopoMouseUnlock")
                 connection = nil
             end
             if modalButton then modalButton.Visible = false end
@@ -616,7 +619,7 @@ local AimbotCore = (function()
     end
     local function release()
         active, currentTarget, currentPart = false, nil, nil
-        ContextActionService:UnbindAction("DreezyBlockCamDrag")
+        ContextActionService:UnbindAction("ShiKopoBlockCamDrag")
     end
     local function update(dt)
         local camera = workspace.CurrentCamera
@@ -666,7 +669,7 @@ local AimbotCore = (function()
     function Core:GetTriggerKey() return aimKey end
     function Core:SetCursorAim(value)
         cursor=value==true; getgenv().CursorAim=cursor
-        ContextActionService:UnbindAction("DreezyBlockCamDrag")
+        ContextActionService:UnbindAction("ShiKopoBlockCamDrag")
         draw(workspace.CurrentCamera)
     end
     function Core:IsCursorAim() return cursor end
@@ -683,7 +686,7 @@ local AimbotCore = (function()
         if Runtime:Matches(input,aimKey) then
             active, nextScan = true, 0
             if cursor and input.UserInputType==Enum.UserInputType.MouseButton2 then
-                ContextActionService:BindActionAtPriority("DreezyBlockCamDrag",function() return Enum.ContextActionResult.Sink end,false,Enum.ContextActionPriority.High.Value+1000,Enum.UserInputType.MouseButton2)
+                ContextActionService:BindActionAtPriority("ShiKopoBlockCamDrag",function() return Enum.ContextActionResult.Sink end,false,Enum.ContextActionPriority.High.Value+1000,Enum.UserInputType.MouseButton2)
             end
         end
     end)
@@ -2146,11 +2149,11 @@ local MinimapCore = (function()
     local function initUI()
         if container then return end
 
-        local targetGui = CoreGui:FindFirstChild("DreeZyVoidware") or CoreGui:FindFirstChild("RobloxGui")
+        local targetGui = CoreGui:FindFirstChild("ShiKopoGui") or CoreGui:FindFirstChild("RobloxGui")
         if not targetGui then return end
 
         container = Instance.new("Frame")
-        container.Name = "DreeZyMinimap"
+        container.Name = "ShiKopoMinimap"
         container.Size = UDim2.new(0, mapSize, 0, mapSize)
         container.Position = UDim2.new(1, -mapSize - 20, 0, 20)
         container.BackgroundTransparency = 1
@@ -2599,7 +2602,7 @@ local FreeShiftLockCore = (function()
         if not crosshairDot or not crosshairDot.Parent then
             local sg = LocalPlayer:FindFirstChildOfClass("PlayerGui") or game:GetService("CoreGui")
             local gui = Runtime:Own(Instance.new("ScreenGui"))
-            gui.Name = "DreezyFreeShiftLockGui"
+            gui.Name = "ShiKopoFreeShiftLockGui"
             gui.ResetOnSpawn = false
             gui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -2717,7 +2720,7 @@ end)()
 local VoidLib = {}
 local function Notify(msg)
     pcall(function()
-        game:GetService("StarterGui"):SetCore("SendNotification", {Title="DreeZy HUB", Text=tostring(msg), Duration=3})
+        game:GetService("StarterGui"):SetCore("SendNotification", {Title="ShiKopo", Text=tostring(msg), Duration=3})
     end)
 end
 
@@ -2732,7 +2735,7 @@ local Themes = {
 }
 
 local HttpService = game:GetService("HttpService")
-local FOLDER_NAME = "DreeZyHub"
+local FOLDER_NAME = "ShiKopo"
 local FILE_PATH = FOLDER_NAME .. "/Config.json"
 
 local function EnsureFolder()
@@ -2744,6 +2747,26 @@ local function EnsureFolder()
         end)
     end
 end
+
+-- Importa sem apagar os originais nem sobrescrever arquivos já existentes.
+local function ImportLegacyData()
+    if not (isfile and readfile and writefile) then return end
+    EnsureFolder()
+    for _, name in ipairs({"Config.json", "Config.json.bak", "Favorites.json"}) do
+        local ok, err = pcall(function()
+            local destination = FOLDER_NAME .. "/" .. name
+            local source = Legacy.Folder .. "/" .. name
+            if not isfile(destination) and isfile(source) then
+                local content = readfile(source)
+                assert(#content <= 1024*1024, "Arquivo legado muito grande")
+                writefile(destination, content)
+                assert(readfile(destination) == content, "Importação incompleta")
+            end
+        end)
+        if not ok then Runtime:Report("importação de " .. name, err) end
+    end
+end
+ImportLegacyData()
 
 local function DecodeData(data)
     local b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
@@ -2919,10 +2942,10 @@ end
 
 
 function VoidLib:CreateWindow()
-    if game:GetService("CoreGui"):FindFirstChild("DreeZyVoidware") then game:GetService("CoreGui").DreeZyVoidware:Destroy() end
+    if game:GetService("CoreGui"):FindFirstChild("ShiKopoGui") then game:GetService("CoreGui").ShiKopoGui:Destroy() end
 
     local ScreenGui = Runtime:Own(Instance.new("ScreenGui"))
-    ScreenGui.Name = "DreeZyVoidware"
+    ScreenGui.Name = "ShiKopoGui"
     Runtime.Gui=ScreenGui
     ScreenGui.Parent = game:GetService("CoreGui")
     if getgenv().MinimapEnabled then MinimapCore:SetEnabled(true) end
@@ -3102,7 +3125,7 @@ function VoidLib:CreateWindow()
     local MStroke = Instance.new("UIStroke"); MStroke.Color = Themes.Accent; MStroke.Thickness = 1; MStroke.Parent = ModalFrame
 
     local MTitle = Instance.new("TextLabel")
-    MTitle.Text = "Bem-vindo ao DreeZy HUB"
+    MTitle.Text = "Bem-vindo ao ShiKopo"
     MTitle.Font = Enum.Font.GothamBold
     MTitle.TextSize = 20
     MTitle.TextColor3 = Themes.Accent
@@ -3171,7 +3194,7 @@ function VoidLib:CreateWindow()
     local SidebarFix = Instance.new("Frame"); SidebarFix.Size = UDim2.new(0,10,1,0); SidebarFix.Position = UDim2.new(1,-10,0,0); SidebarFix.BackgroundColor3 = Themes.Sidebar; SidebarFix.BorderSizePixel = 0; SidebarFix.Parent = Sidebar
 
     local Title = Instance.new("TextLabel")
-    Title.Text = "  DreeZy HUB"
+    Title.Text = "  ShiKopo"
     Title.Font = Enum.Font.GothamBold
     Title.TextSize = 22
     Title.TextColor3 = Themes.Accent
@@ -3243,7 +3266,7 @@ function VoidLib:CreateWindow()
 
     local Window = {Tabs = {}}
 
-    -- Persistência de Favoritos e Ordem Personalizada (DreeZyHub/Favorites.json)
+    -- Persistência de Favoritos e Ordem Personalizada (ShiKopo/Favorites.json)
     getgenv().FavoritedMods = getgenv().FavoritedMods or {}
     getgenv().FavoritedOrder = getgenv().FavoritedOrder or {}
 
@@ -3265,8 +3288,8 @@ function VoidLib:CreateWindow()
     local function SaveFavoritesToFile()
         pcall(function()
             if writefile then
-                if isfolder and makefolder and not isfolder("DreeZyHub") then
-                    makefolder("DreeZyHub")
+                if isfolder and makefolder and not isfolder("ShiKopo") then
+                    makefolder("ShiKopo")
                 end
                 EnsureFavoritedOrder()
                 local payload = {
@@ -3274,15 +3297,15 @@ function VoidLib:CreateWindow()
                     Order = getgenv().FavoritedOrder or {}
                 }
                 local dataStr = game:GetService("HttpService"):JSONEncode(payload)
-                writefile("DreeZyHub/Favorites.json", dataStr)
+                writefile("ShiKopo/Favorites.json", dataStr)
             end
         end)
     end
 
     local function LoadFavoritesFromFile()
         pcall(function()
-            if isfile and readfile and isfile("DreeZyHub/Favorites.json") then
-                local dataStr = readfile("DreeZyHub/Favorites.json")
+            if isfile and readfile and isfile("ShiKopo/Favorites.json") then
+                local dataStr = readfile("ShiKopo/Favorites.json")
                 local decoded = game:GetService("HttpService"):JSONDecode(dataStr)
                 if type(decoded) == "table" then
                     if decoded.Order and type(decoded.Order) == "table" then
@@ -3304,7 +3327,7 @@ function VoidLib:CreateWindow()
 
     -- HUD Flutuante Redimensionável dos Mods Favoritos
     local FavHUDFrame = Instance.new("Frame")
-    FavHUDFrame.Name = "DreeZyFavHUD"
+    FavHUDFrame.Name = "ShiKopoFavHUD"
     FavHUDFrame.Size = UDim2.new(0, 320, 0, 240)
     FavHUDFrame.Position = UDim2.new(0.5, -160, 0.4, -120)
     FavHUDFrame.BackgroundColor3 = Themes.Background
@@ -3648,7 +3671,7 @@ function VoidLib:CreateWindow()
 
     -- Menu de Contexto de Botão Direito (Favoritar)
     local ContextMenuFrame = Instance.new("Frame")
-    ContextMenuFrame.Name = "DreeZyContextMenu"
+    ContextMenuFrame.Name = "ShiKopoContextMenu"
     ContextMenuFrame.Size = UDim2.new(0, 160, 0, 42)
     ContextMenuFrame.BackgroundColor3 = Color3.fromRGB(26, 24, 34)
     ContextMenuFrame.BorderSizePixel = 0
@@ -3703,7 +3726,7 @@ function VoidLib:CreateWindow()
             if FavHUDFrame.Visible then RefreshFavHUD() end
 
             game:GetService("StarterGui"):SetCore("SendNotification", {
-                Title = "DreeZy HUB",
+                Title = "ShiKopo",
                 Text = isFav and ("★ " .. currentSocketModName .. " favoritado!") or ("☆ " .. currentSocketModName .. " removido dos favoritos!"),
                 Duration = 2
             })
@@ -6324,7 +6347,7 @@ do
                             myChar:SetPrimaryPartCFrame(targetCFrame)
                             
                             game:GetService("StarterGui"):SetCore("SendNotification", {
-                                Title = "DreeZy HUB",
+                                Title = "ShiKopo",
                                 Text = "Teleportado para: " .. (targetPlayer.DisplayName or targetPlayer.Name) .. " (" .. posMode .. ")",
                                 Duration = 2.5
                             })
@@ -6358,9 +6381,9 @@ do
             if KillAuraCore and KillAuraCore.TeleportOnce then
                 local res = KillAuraCore:TeleportOnce()
                 if res then
-                    game:GetService("StarterGui"):SetCore("SendNotification", {Title="DreeZy HUB", Text="Teleportado para: " .. (res.DisplayName or res.Name), Duration=2})
+                    game:GetService("StarterGui"):SetCore("SendNotification", {Title="ShiKopo", Text="Teleportado para: " .. (res.DisplayName or res.Name), Duration=2})
                 else
-                    game:GetService("StarterGui"):SetCore("SendNotification", {Title="DreeZy HUB", Text="Nenhum alvo encontrado para TP!", Duration=2})
+                    game:GetService("StarterGui"):SetCore("SendNotification", {Title="ShiKopo", Text="Nenhum alvo encontrado para TP!", Duration=2})
                 end
             end
         end, "Click TP PL", ToggleClickTPPL)
@@ -6716,12 +6739,12 @@ do
 
         if autoReexecuteReload then
             local queueTeleport=queue_on_teleport or (syn and syn.queue_on_teleport) or queueonteleport or (fluxus and fluxus.queue_on_teleport)
-            if not queueTeleport or not isfile or not readfile or not isfile("DreeZyHub/RespawnHUD.lua") then
-                Notify("Reexecução precisa de uma cópia local em DreeZyHub/RespawnHUD.lua e suporte do executor.")
+            if not queueTeleport or not isfile or not readfile or not isfile("ShiKopo/RespawnHUD.lua") then
+                Notify("Reexecução precisa de uma cópia local em ShiKopo/RespawnHUD.lua e suporte do executor.")
                 return
             end
             local ok,err=pcall(function()
-                local source=readfile("DreeZyHub/RespawnHUD.lua")
+                local source=readfile("ShiKopo/RespawnHUD.lua")
                 assert(#source<=2*1024*1024,"Cópia local excede o limite")
                 queueTeleport("repeat task.wait() until game:IsLoaded(); local chunk,err=loadstring("..string.format("%q",source).."); assert(chunk,err); chunk()")
             end)
@@ -6729,7 +6752,7 @@ do
         end
 
         game:GetService("StarterGui"):SetCore("SendNotification", {
-            Title = "DreeZy HUB",
+            Title = "ShiKopo",
             Text = autoReexecuteReload and "Reconectando e reexecutando o script..." or "Reconectando ao mesmo servidor...",
             Duration = 3
         })
@@ -6786,21 +6809,21 @@ do
     PerfGroup:Toggle("Medir custo das funções",false,function(value) Runtime.Profiling=value end)
     PerfGroup:Button("Mostrar diagnóstico",function()
         local info=Runtime:GetDiagnostics()
-        print("[DreeZy HUB] "..HttpService:JSONEncode(info))
+        print("[ShiKopo] "..HttpService:JSONEncode(info))
         Notify("Diagnóstico exibido no console do executor.")
     end)
     PerfGroup:Button("Descarregar HUB",function() Runtime:Destroy() end)
     local ManagerGroup = Settings:Group("Gerenciamento")
 
     local function Notify(msg)
-        game:GetService("StarterGui"):SetCore("SendNotification", {Title="DreeZy HUB", Text=msg, Duration=3})
+        game:GetService("StarterGui"):SetCore("SendNotification", {Title="ShiKopo", Text=msg, Duration=3})
     end
 
     ManagerGroup:Button("Salvar Configurações", function()
         if writefile then
             local success = ConfigManager:Save()
             if success then
-                Notify("Configurações salvas em DreeZyHub/Config.json!")
+                Notify("Configurações salvas em ShiKopo/Config.json!")
             else
                 Notify("Erro ao salvar: "..tostring(ConfigManager.LastError))
             end
@@ -6823,10 +6846,10 @@ do
     end)
 
     local InfoGroup = Settings:Group("Informações")
-    InfoGroup:Button("Criado por DreeZy", function() setclipboard("DreeZy") end)
+    InfoGroup:Button("ShiKopo", function() Notify("ShiKopo — versão " .. Runtime.Version) end)
 end -- End Settings Block
 
-Notify("DreeZy Voidware V2 Carregado!")
+Notify("ShiKopo 2.1.1 Carregado!")
 Notify("Use [Right Shift] para abrir/fechar o Menu!")
 
 Runtime.Modules={MouseUnlocker=MouseUnlocker,RespawnCore=RespawnCore,TeamManager=TeamManager,AimbotCore=AimbotCore,
@@ -6834,14 +6857,14 @@ Runtime.Modules={MouseUnlocker=MouseUnlocker,RespawnCore=RespawnCore,TeamManager
     ESPCore=ESPCore,HighAlertCore=HighAlertCore,MinimapCore=MinimapCore,FreeShiftLockCore=FreeShiftLockCore}
 Runtime.ConfigManager=ConfigManager
 Runtime.Initializing=false
-env.DreeZyHubLoaded=true
+env.ShiKopoLoaded=true
 end -- Bootstrap
 
 local ok,err=xpcall(Bootstrap,function(value) return debug.traceback(tostring(value),2) end)
 if not ok then
     Runtime:Report("inicialização",err)
     Runtime:Destroy()
-    warn("DreeZy-HUB não iniciou: "..tostring(err))
+    warn("ShiKopo não iniciou: "..tostring(err))
     return nil
 end
 return Runtime

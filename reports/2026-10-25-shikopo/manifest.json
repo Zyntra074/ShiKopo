@@ -1,0 +1,165 @@
+{
+  "version": "2.1.1",
+  "date": "2026-10-25",
+  "repository": "Zyntra074/ShiKopo",
+  "parent_commit": "bfa1717a8a3bed9742d3608ae75dce918b4dbffd",
+  "total_cases": 150,
+  "lua_files_compiled": 4,
+  "files": [
+    {
+      "path": ".agents/rules/shikopo_workflow.md",
+      "bytes": 485,
+      "sha256": "8aa7d7ae7434bb0f813174538fbf8a6426b61585387cd56e092047fd0e41a64b"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 166,
+      "sha256": "4c56b115e33a14e3e75382e83964dbb0188f6e35a885fa1d26171997e898b4ac"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 1608,
+      "sha256": "31b45813e177c89f94ae20f03e6f32f52a5aba207bb3d16d65130ae0c16d57d5"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 3230,
+      "sha256": "0403ef87c3d4bfe7c8511fe4d87bed9d36f3269a31ee385088b2ddf9b537e184"
+    },
+    {
+      "path": "CORRECOES_E_DESEMPENHO.md",
+      "bytes": 12384,
+      "sha256": "f9567485e6eb68e0e046422b81f68b4f8326d381e5abbf124dfff58294c3dab7"
+    },
+    {
+      "path": "PROJECT.md",
+      "bytes": 3192,
+      "sha256": "ae23f3318c9d6da934d0b47d7aed124f73471e721060771169c0385e6eb71893"
+    },
+    {
+      "path": "Readme.md",
+      "bytes": 10042,
+      "sha256": "b0464a603d21f4438dcadb5fb475f0b15566ce416b916d6a9d345e0564a7655c"
+    },
+    {
+      "path": "reports/2026-10-25-shikopo/challenger_deep.log",
+      "bytes": 1260,
+      "sha256": "c71482078b849d19089c1e0a0b88a48ef0ae4edd78fd289b3de16e3aa33e9031"
+    },
+    {
+      "path": "reports/2026-10-25-shikopo/challenger_m1.log",
+      "bytes": 3759,
+      "sha256": "801b5ab6b400e378836b8c3761c0ddeafc47ba6b6ddd9647de05ced10e31309e"
+    },
+    {
+      "path": "reports/2026-10-25-shikopo/challenger_probe.log",
+      "bytes": 1694,
+      "sha256": "eac0058dd89ef2dbd6910be7103f8425718054d3b11bdb6da0ae68acb2f3829f"
+    },
+    {
+      "path": "reports/2026-10-25-shikopo/integration.log",
+      "bytes": 3500,
+      "sha256": "6d7a59cb332ab5426c39581e6669604efac73641bc7cbbf15506b1f0bfcd89e0"
+    },
+    {
+      "path": "reports/2026-10-25-shikopo/README.md",
+      "bytes": 2062,
+      "sha256": "d5fdff903a0c0c07fe4c788624b88ff80e431073fd9f747baafe2d8dfd7449a0"
+    },
+    {
+      "path": "reports/2026-10-25-shikopo/results.json",
+      "bytes": 507,
+      "sha256": "5c7c3fbddf5537d9e463549cd5f9526cfc12d02a1584425bdc3fed1065788ac3"
+    },
+    {
+      "path": "reports/2026-10-25-shikopo/smoke.log",
+      "bytes": 1851,
+      "sha256": "84d682307b3a05fa8ea3f708d259876b4f3512e5d026df412af722d62e2c538c"
+    },
+    {
+      "path": "reports/2026-10-25-shikopo/syntax_regressions.log",
+      "bytes": 1011,
+      "sha256": "2fe133e689d2ebdface97d621005321df714a812b0d1dae21452dcd911663a83"
+    },
+    {
+      "path": "requirements-dev.txt",
+      "bytes": 10,
+      "sha256": "c355c313ec4744320b1e0d22e7e70465d899a48e8c62293578ddff95d0672c6b"
+    },
+    {
+      "path": "RespawnHUD.lua",
+      "bytes": 329504,
+      "sha256": "68b50557745998dee864e0e94f85e7712b484a39569f0a66e29aaf381fe79ca0"
+    },
+    {
+      "path": "TEST_INFRA.md",
+      "bytes": 4256,
+      "sha256": "7b6117b41c3f2fe38ba8de369c1e7c8477f488b2778b05b15ae45e7c9cbdec29"
+    },
+    {
+      "path": "tests/benchmark_hub.py",
+      "bytes": 3778,
+      "sha256": "301bc845ad14cd0a5a4bc36bcc215ffba2b0409df19445898fa3d5cbd1b201fa"
+    },
+    {
+      "path": "tests/mock_roblox.lua",
+      "bytes": 58715,
+      "sha256": "75a4583b09b86f092a05fc3f2c43e8a10962e1fefa6631de229b8f498a87d027"
+    },
+    {
+      "path": "tests/mock_scheduler.lua",
+      "bytes": 6437,
+      "sha256": "8c113e3aea8610d7906e9af9d7c9a66ed13c0ef4b99000300fb828109d877909"
+    },
+    {
+      "path": "tests/run_all.py",
+      "bytes": 2386,
+      "sha256": "4a8ca1a906c8e01db3e63b79078386afff083298edc8415d7696f86b4d272f23"
+    },
+    {
+      "path": "tests/run_tests.py",
+      "bytes": 20006,
+      "sha256": "a911593db8f021c72e52ba2e38fe7916c94ae136814f6e2711b547affac5561e"
+    },
+    {
+      "path": "tests/setup_luau.py",
+      "bytes": 1367,
+      "sha256": "f99ea9e5674c46d7a75eb02191efcdec851d85da179dd9794f71e5222a31b7b7"
+    },
+    {
+      "path": "tests/test_cases.lua",
+      "bytes": 25677,
+      "sha256": "bf522d23c95eded81fcf1e92b5cec8a3b881a437a63ea52b28f4160221e579c4"
+    },
+    {
+      "path": "tests/test_challenger_m1.py",
+      "bytes": 26512,
+      "sha256": "7e20218b0303f9968f93754154af800f35289a090ce5d8515d921d453474b31b"
+    },
+    {
+      "path": "tests/test_challenger_probe.py",
+      "bytes": 21280,
+      "sha256": "46c7f1d9a1bf2fbd4a8e9e6ebfa402c11135fdaa04d32e5dda87e44762d9b37c"
+    },
+    {
+      "path": "tests/test_challenger_v2_deep.py",
+      "bytes": 13103,
+      "sha256": "7882c5ea8f588b73a7476020470aa4d852f910608d49539168c6dd59b38237d5"
+    },
+    {
+      "path": "tests/test_hub.py",
+      "bytes": 2566,
+      "sha256": "97993a5475404953e824c1b52841cc1e9f3c8ba256683430e8324ff4e3535033"
+    },
+    {
+      "path": "tests/test_syntax_regressions.py",
+      "bytes": 1468,
+      "sha256": "6b78f4843e0b8d4b8b61afffd3b08bc5586846baba15287f3b37e89435dfa29f"
+    },
+    {
+      "path": "tests/verify_syntax.py",
+      "bytes": 2799,
+      "sha256": "9bb634fdf74e807afecb34cffc874abf9c1da76a67218446dd2faea2a686c956"
+    }
+  ]
+}

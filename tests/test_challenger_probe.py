@@ -32,7 +32,7 @@ class ProbeResults:
 def run_challenger_probes():
     results = ProbeResults()
     print("==================================================")
-    print("   DreezHub Challenger 2 Adversarial Probe Suite  ")
+    print("   ShiKopo Challenger 2 Adversarial Probe Suite  ")
     print("==================================================")
 
     # Initialize Lupa environment
@@ -161,7 +161,7 @@ def run_challenger_probes():
     except Exception as e:
         results.record_fail("JSON 1.6: String escape sequences (quotes, newlines, slashes)", str(e))
 
-    # JSON 1.7: Full realistic DreezHub config serialization
+    # JSON 1.7: Full realistic ShiKopo config serialization
     try:
         lua.execute("""
             local hs = HttpService
@@ -176,11 +176,11 @@ def run_challenger_probes():
             _json_1_7_pass = (dec.Aimbot.Enabled == true and dec.Aimbot.FOV == 120 and dec.ESP.Boxes == true and dec.Keybinds.AimbotKey == "Enum.KeyCode.E")
         """)
         if lua.eval("_json_1_7_pass"):
-            results.record_pass("JSON 1.7: Full realistic DreezHub config serialization")
+            results.record_pass("JSON 1.7: Full realistic ShiKopo config serialization")
         else:
-            results.record_fail("JSON 1.7: Full realistic DreezHub config serialization", "Config mismatch after roundtrip")
+            results.record_fail("JSON 1.7: Full realistic ShiKopo config serialization", "Config mismatch after roundtrip")
     except Exception as e:
-        results.record_fail("JSON 1.7: Full realistic DreezHub config serialization", str(e))
+        results.record_fail("JSON 1.7: Full realistic ShiKopo config serialization", str(e))
 
     # JSON 1.8: Syntax error rejection on malformed JSON
     try:

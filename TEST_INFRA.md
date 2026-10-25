@@ -1,8 +1,8 @@
-# Infraestrutura de testes — DreeZy-HUB 2.1.0
+# Infraestrutura de testes — ShiKopo 2.1.1
 
 Revisão de 25/10/2026. As metas anteriores de uma arquitetura modular futura foram substituídas pela descrição dos testes realmente existentes.
 
-A suíte completa está publicada em [tests/](tests/). Evidências da revalidação: [reports/2026-10-25/](reports/2026-10-25/).
+A suíte completa está publicada em [tests/](tests/). Evidências da renomeação: [reports/2026-10-25-shikopo/](reports/2026-10-25-shikopo/). A pasta reports/2026-10-25 conserva a validação histórica da versão 2.1.0.
 
 ## Ambiente
 
@@ -32,9 +32,9 @@ run_all.py grava logs e results.json em .test-results, ou na pasta passada por -
 | test_challenger_probe.py | 20 | JSON, arquivos virtuais e desenhos |
 | test_challenger_v2_deep.py | 10 | Limites e estresse do mock |
 | test_syntax_regressions.py | 7 | Continue fora de loop, strings, tipos Luau, erros e compilador ausente |
-| test_hub.py + test_cases.lua | 52 | Programa completo, recursos, configurações, ciclos de vida e limites de trabalho |
+| test_hub.py + test_cases.lua | 59 | Programa completo, recursos, configurações, ciclos de vida e limites de trabalho |
 
-Total validado: **143 casos**, com zero falhas. Além deles, os quatro arquivos Lua são compilados pelo verificador nativo.
+Total validado: **150 casos**, com zero falhas. Além deles, os quatro arquivos Lua são compilados pelo verificador nativo.
 
 ## Integração
 
@@ -44,6 +44,9 @@ mock_scheduler.lua fornece agendamento determinístico, cancelamento, entrada si
 
 Cobertura funcional inclui:
 
+- identidade ShiKopo na interface, notificações, estado e arquivos;
+- importação de configuração/favoritos/backup da marca anterior, prioridade dos arquivos atuais e falha de escrita;
+- substituição da instância anterior e proteção para versões sem limpeza;
 - bootstrap, ausência de Drawing e falha de serviço;
 - execução duplicada, remoção de interface e encerramento;
 - cursor, escopo de alvos, FOV e cache de amizade;

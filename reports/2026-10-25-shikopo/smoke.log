@@ -1,0 +1,36 @@
+==================================================
+           ShiKopo Test Suite Runner             
+==================================================
+=== Native Luau syntax verification (4 files) ===
+  [PASS] RespawnHUD.lua: OK (6870 lines, native Luau)
+  [PASS] tests\mock_roblox.lua: OK (1824 lines, native Luau)
+  [PASS] tests\mock_scheduler.lua: OK (137 lines, native Luau)
+  [PASS] tests\test_cases.lua: OK (601 lines, native Luau)
+Results: 4 passed, 0 failed out of 4 total files.
+
+=== ShiKopo Mock Roblox Engine Smoke Test ===
+  [PASS] Datatypes: Vector2 arithmetic & properties
+  [PASS] Datatypes: Vector3 arithmetic, cross & lerp
+  [PASS] Datatypes: Color3 new, fromRGB, fromHex, ToHex
+  [PASS] Datatypes: CFrame transforms, Angles, lookAt, Inverse
+  [PASS] Datatypes: UDim2 and UDim
+  [PASS] Datatypes: Enum and EnumItem proxy lookup
+  [PASS] Signals: Connect, Fire, Disconnect lifecycle
+  [PASS] Instance: Hierarchy, FindFirstChild, IsA, Destroy
+  [PASS] Instance: GetPropertyChangedSignal observation
+  [PASS] Services: game:GetService resolution
+  [PASS] Services: RunService Step and frame signals
+  [PASS] Services: HttpService JSONEncode, JSONDecode, GUID
+  [PASS] Services: Camera WorldToViewportPoint perspective projection
+  [PASS] Services: Players, Teams, and MockPlayer creation
+  [PASS] Drawing API: Square, Text instantiation, properties and removal
+  [PASS] VFS: writefile, readfile, isfile, isfolder, delfile
+  [PASS] Executor Globals: mousemoverel, UserInputService, loadstring
+  [PASS] M1 Fix Engine Additions: task.spawn, typeof, GetMouse, Services, Hierarchy
+--------------------------------------------------
+Smoke Test Results: 18 passed, 0 failed out of 18 tests.
+
+Completed all test runs in 0.12 seconds.
+
+[SUCCESS] All syntax checks and mock engine smoke tests passed cleanly!
+

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 tests/run_tests.py
-Headless Test Suite Runner for DreezHub
+Headless Test Suite Runner for ShiKopo
 Executes:
   1. Static syntax verification across all Lua scripts (verify_syntax.py)
   2. Mock Roblox Engine smoke test verifying all datatypes, services, instances, signals,
@@ -204,7 +204,7 @@ def run_mock_engine_smoke_test() -> tuple[int, int, list[str]]:
     def test_httpservice_json():
         lua.execute('''
             local http = game:GetService("HttpService")
-            local data = { name = "DreezHub", enabled = true, count = 42, tags = { "combat", "visual" } }
+            local data = { name = "ShiKopo", enabled = true, count = 42, tags = { "combat", "visual" } }
             local jsonStr = http:JSONEncode(data)
             local decoded = http:JSONDecode(jsonStr)
             _json_name = decoded.name
@@ -213,7 +213,7 @@ def run_mock_engine_smoke_test() -> tuple[int, int, list[str]]:
             _json_tag1 = decoded.tags[1]
             _guid = http:GenerateGUID(false)
         ''')
-        assert lua.eval('_json_name') == "DreezHub"
+        assert lua.eval('_json_name') == "ShiKopo"
         assert lua.eval('_json_enabled') == True
         assert lua.eval('_json_count') == 42
         assert lua.eval('_json_tag1') == "combat"
@@ -281,12 +281,12 @@ def run_mock_engine_smoke_test() -> tuple[int, int, list[str]]:
     # -------------------------------------------------------------------------
     def test_vfs():
         lua.execute('''
-            writefile("DreezHub/test_cfg.json", '{"fov": 120, "esp": true}')
-            _vfs_isfile = isfile("DreezHub/test_cfg.json")
-            _vfs_content = readfile("DreezHub/test_cfg.json")
-            _vfs_isfolder = isfolder("DreezHub")
-            delfile("DreezHub/test_cfg.json")
-            _vfs_isfile_after_del = isfile("DreezHub/test_cfg.json")
+            writefile("ShiKopo/test_cfg.json", '{"fov": 120, "esp": true}')
+            _vfs_isfile = isfile("ShiKopo/test_cfg.json")
+            _vfs_content = readfile("ShiKopo/test_cfg.json")
+            _vfs_isfolder = isfolder("ShiKopo")
+            delfile("ShiKopo/test_cfg.json")
+            _vfs_isfile_after_del = isfile("ShiKopo/test_cfg.json")
         ''')
         assert lua.eval('_vfs_isfile') == True, "isfile returned false for written file"
         assert '{"fov": 120' in lua.eval('_vfs_content'), "readfile returned corrupted content"
@@ -370,7 +370,7 @@ def run_mock_engine_smoke_test() -> tuple[int, int, list[str]]:
     tests.append(("M1 Fix Engine Additions: task.spawn, typeof, GetMouse, Services, Hierarchy", test_m1_fix_additions))
 
     # Run all smoke tests
-    print("=== DreezHub Mock Roblox Engine Smoke Test ===")
+    print("=== ShiKopo Mock Roblox Engine Smoke Test ===")
     passed = 0
     failed = 0
     errors = []
@@ -392,7 +392,7 @@ def run_mock_engine_smoke_test() -> tuple[int, int, list[str]]:
 def main():
     start_time = time.time()
     print("==================================================")
-    print("           DreezHub Test Suite Runner             ")
+    print("           ShiKopo Test Suite Runner             ")
     print("==================================================")
     
     # Step 1: Syntax Verification

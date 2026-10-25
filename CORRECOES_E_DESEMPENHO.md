@@ -1,6 +1,8 @@
-# Correções e desempenho — ShiKopo / DreeZy-HUB 2.1.0
+# Correções e desempenho — ShiKopo 2.1.0
 
 Entrega original local de **25/10/2026**, agora publicada com os testes em `Zyntra074/ShiKopo`. Evidências: [reports/2026-10-25/](reports/2026-10-25/).
+
+> Registro da revisão 2.1.0. A renomeação para ShiKopo 2.1.1 e seus 150 testes estão documentados no CHANGELOG.md e em reports/2026-10-25-shikopo/. Os hashes e contadores abaixo descrevem a revisão original.
 
 ## Resultado
 
@@ -106,7 +108,7 @@ Não há garantia de atomicidade para todas as APIs de executor. O backup e a ve
 
 A animação remota foi removida. O principal não contém HttpGet nem baixa módulos para iniciar.
 
-A reexecução após teleporte usa conteúdo de **DreeZyHub/RespawnHUD.lua no espaço de arquivos do executor**, quando a opção estiver ligada e as APIs necessárias existirem. Essa cópia deve ser mantida atualizada pelo usuário; alterar a pasta Downloads não a sincroniza.
+A reexecução após teleporte usa conteúdo de **ShiKopo/RespawnHUD.lua no espaço de arquivos do executor**, quando a opção estiver ligada e as APIs necessárias existirem. Essa cópia deve ser mantida atualizada pelo usuário; alterar a pasta Downloads não a sincroniza.
 
 Esta revisão está publicada na branch main de Zyntra074/ShiKopo. Comandos antigos que apontam para outros repositórios não garantem carregar esta revisão.
 

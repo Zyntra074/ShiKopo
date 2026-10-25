@@ -45,7 +45,7 @@ class TestResults:
 def run_challenger_tests():
     results = TestResults()
     print("==================================================")
-    print("      DreezHub Milestone 1 Challenger Tests       ")
+    print("      ShiKopo Milestone 1 Challenger Tests       ")
     print("==================================================")
 
     # Load Lua VM with mock_roblox.lua
