@@ -1,5 +1,13 @@
 # Changelog
 
+## 2.1.2 — 25/10/2026
+
+- Arquivo principal renomeado de RespawnHUD.lua para ShiKopo.lua, refletindo o escopo completo do hub.
+- Atualizados links, documentação, orientações de manutenção e caminhos padrão dos testes e benchmark.
+- Reexecução após teleporte passa a usar ShiKopo/ShiKopo.lua; mantenha a cópia local desse arquivo atualizada.
+- Validação completa preserva os 150 casos aprovados e a compilação dos quatro arquivos Lua.
+
+
 ## 2.1.1 — 25/10/2026
 
 - Hub renomeado para ShiKopo no menu, boas-vindas, notificações, diagnóstico e nomes internos.

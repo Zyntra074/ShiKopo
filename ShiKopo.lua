@@ -1,4 +1,4 @@
--- RespawnHUD.lua
+-- ShiKopo.lua
 -- Interface Moderna "Voidware Style" (Roxo/Dark)
 -- Universal Hub
 
@@ -30,7 +30,7 @@ elseif env.ShiKopoLoaded or env[Legacy.LoadedKey] then
     return
 end
 local Runtime = {
-    Version = "2.1.1", Alive = true, Initializing = true,
+    Version = "2.1.2", Alive = true, Initializing = true,
     Connections = {}, Resources = {}, Tasks = {}, Cleanups = {}, Jobs = {},
     Errors = {}, FailureSerial = 0, Stats = {}, Modules = {}, FriendCache = {},
     PlayerCache = nil, Profile = "Equilibrado", Profiling = false,
@@ -6739,12 +6739,12 @@ do
 
         if autoReexecuteReload then
             local queueTeleport=queue_on_teleport or (syn and syn.queue_on_teleport) or queueonteleport or (fluxus and fluxus.queue_on_teleport)
-            if not queueTeleport or not isfile or not readfile or not isfile("ShiKopo/RespawnHUD.lua") then
-                Notify("Reexecução precisa de uma cópia local em ShiKopo/RespawnHUD.lua e suporte do executor.")
+            if not queueTeleport or not isfile or not readfile or not isfile("ShiKopo/ShiKopo.lua") then
+                Notify("Reexecução precisa de uma cópia local em ShiKopo/ShiKopo.lua e suporte do executor.")
                 return
             end
             local ok,err=pcall(function()
-                local source=readfile("ShiKopo/RespawnHUD.lua")
+                local source=readfile("ShiKopo/ShiKopo.lua")
                 assert(#source<=2*1024*1024,"Cópia local excede o limite")
                 queueTeleport("repeat task.wait() until game:IsLoaded(); local chunk,err=loadstring("..string.format("%q",source).."); assert(chunk,err); chunk()")
             end)
@@ -6849,7 +6849,7 @@ do
     InfoGroup:Button("ShiKopo", function() Notify("ShiKopo — versão " .. Runtime.Version) end)
 end -- End Settings Block
 
-Notify("ShiKopo 2.1.1 Carregado!")
+Notify("ShiKopo 2.1.2 Carregado!")
 Notify("Use [Right Shift] para abrir/fechar o Menu!")
 
 Runtime.Modules={MouseUnlocker=MouseUnlocker,RespawnCore=RespawnCore,TeamManager=TeamManager,AimbotCore=AimbotCore,

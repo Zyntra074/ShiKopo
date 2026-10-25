@@ -47,7 +47,7 @@ print("BENCH:"..HttpService:JSONEncode(stats))
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--before",type=Path,required=True)
-    parser.add_argument("--after",type=Path,default=ROOT/"RespawnHUD.lua")
+    parser.add_argument("--after",type=Path,default=ROOT/"ShiKopo.lua")
     parser.add_argument("--luau",required=True)
     parser.add_argument("--output",type=Path,required=True)
     args=parser.parse_args()

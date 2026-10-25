@@ -32,7 +32,7 @@ def generate(source: Path) -> str:
 
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--source",type=Path,default=ROOT/"RespawnHUD.lua")
+    parser.add_argument("--source",type=Path,default=ROOT/"ShiKopo.lua")
     parser.add_argument("--luau",default=os.environ.get("LUAU_BIN") or shutil.which("luau") or str(ROOT/".tools"/"luau"/("luau.exe" if os.name=="nt" else "luau")))
     parser.add_argument("--log",type=Path)
     args=parser.parse_args()

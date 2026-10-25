@@ -11,7 +11,7 @@
 
 ## Validação
 
-- Preserve a distribuição principal em `RespawnHUD.lua`, salvo pedido do proprietário para mudar a estrutura.
+- Preserve a distribuição principal em `ShiKopo.lua`, salvo pedido do proprietário para mudar a estrutura.
 - Após mudanças funcionais no script, valide a sintaxe com Luau nativo e execute `python tests/run_all.py` com Python 3.12, Lupa 2.8 e Luau 0.744. Consulte `TEST_INFRA.md` para preparar o ambiente.
 - Diferencie resultados do simulador de medições no Roblox real. Não afirme ganho de FPS ou compatibilidade com executores sem medição correspondente.
 - Ao concluir, informe o commit publicado e o resultado das verificações. Se a publicação falhar, deixe essa pendência explícita.

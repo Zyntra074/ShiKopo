@@ -1,16 +1,20 @@
-# ShiKopo 2.1.1
+# ShiKopo 2.1.2
 
-Revisão de 25/10/2026, publicada em `Zyntra074/ShiKopo` com os testes e evidências, com correções funcionais, encerramento de recursos e otimizações de trabalho. O programa continua distribuído em **RespawnHUD.lua**, um único arquivo, com blocos internos e um runtime compartilhado.
+Revisão de 25/10/2026, publicada em `Zyntra074/ShiKopo` com os testes e evidências, com correções funcionais, encerramento de recursos e otimizações de trabalho. O programa continua distribuído em **ShiKopo.lua**, um único arquivo, com blocos internos e um runtime compartilhado.
+
+## Arquivo principal
+
+O arquivo principal agora é **[ShiKopo.lua](ShiKopo.lua)**, anteriormente chamado RespawnHUD.lua. Atualize referências e links que ainda apontem para o nome anterior. Para reexecução após teleporte, use uma cópia atualizada em `ShiKopo/ShiKopo.lua`.
 
 ## Nome e arquivos anteriores
 
 O hub agora se chama **ShiKopo**, incluindo menu, notificações e diagnóstico. As novas configurações e favoritos ficam em `ShiKopo/`. Quando há arquivos em `DreeZyHub/` e o destino ainda não existe, a inicialização copia `Config.json`, `Config.json.bak` e `Favorites.json` sem remover os originais. Os arquivos novos têm prioridade; o carregamento de configurações continua manual. Falhas na importação são registradas no diagnóstico.
 
-A cópia de reexecução após teleporte deve ser atualizada pelo usuário em `ShiKopo/RespawnHUD.lua`; código antigo não é importado automaticamente.
+A cópia de reexecução após teleporte deve ser atualizada pelo usuário em `ShiKopo/ShiKopo.lua`; código antigo não é importado automaticamente.
 
 ## Usar a versão corrigida
 
-1. Use **RespawnHUD.lua da branch main de [Zyntra074/ShiKopo](https://github.com/Zyntra074/ShiKopo/blob/main/RespawnHUD.lua)**. Este é o repositório oficial deste trabalho; comandos antigos que apontam para outros repositórios podem carregar outra versão.
+1. Use **ShiKopo.lua da branch main de [Zyntra074/ShiKopo](https://github.com/Zyntra074/ShiKopo/blob/main/ShiKopo.lua)**. Este é o repositório oficial deste trabalho; comandos antigos que apontam para outros repositórios podem carregar outra versão.
 2. Se a versão antiga já está ativa, reconecte ao jogo antes do primeiro teste. Não é possível desfazer de fora as tarefas que a versão antiga não registrou.
 3. Execute o conteúdo do arquivo local no ambiente de execução compatível que você já utiliza.
 4. Em **Configs → Desempenho**, selecione **Econômico** se a prioridade for reduzir o custo dos recursos visuais.
@@ -74,7 +78,7 @@ O carregamento aceita JSON legado e Base64 legado. Valores são validados antes 
 
 Reconectar continua disponível. A reexecução automática está desligada por padrão e **não baixa mais código de um branch remoto mutável**.
 
-Para utilizá-la, o executor precisa oferecer fila após teleporte e leitura de arquivos. Salve uma cópia atualizada de RespawnHUD.lua no caminho **ShiKopo/RespawnHUD.lua dentro do espaço de arquivos do executor**. A opção agenda o conteúdo dessa cópia local. Se ela ou as APIs não estiverem disponíveis, a interface informa o motivo.
+Para utilizá-la, o executor precisa oferecer fila após teleporte e leitura de arquivos. Salve uma cópia atualizada de ShiKopo.lua no caminho **ShiKopo/ShiKopo.lua dentro do espaço de arquivos do executor**. A opção agenda o conteúdo dessa cópia local. Se ela ou as APIs não estiverem disponíveis, a interface informa o motivo.
 
 Alterar o arquivo em Downloads não atualiza automaticamente a cópia do espaço do executor.
 
@@ -82,11 +86,11 @@ Alterar o arquivo em Downloads não atualiza automaticamente a cópia do espaço
 
 Por solicitação do proprietário em 25/10/2026, o GitHub é a fonte oficial do script. Cada alteração concluída deve ser validada e publicada neste repositório junto com testes e documentação pertinentes. As cópias locais são temporárias para preparação e testes. Consulte [AGENTS.md](AGENTS.md).
 
-A suíte está em [tests/](tests/). A validação da renomeação está em [reports/2026-10-25-shikopo/](reports/2026-10-25-shikopo/); a entrega anterior permanece como evidência histórica em [reports/2026-10-25/](reports/2026-10-25/).
+A suíte está em [tests/](tests/). A validação atual está em [reports/2026-10-25-shikopo-lua/](reports/2026-10-25-shikopo-lua/); a troca da marca foi validada em [reports/2026-10-25-shikopo/](reports/2026-10-25-shikopo/); a entrega anterior permanece como evidência histórica em [reports/2026-10-25/](reports/2026-10-25/).
 
 ## Estrutura real
 
-- RespawnHUD.lua: runtime, 12 blocos funcionais, persistência e interface.
+- ShiKopo.lua: runtime, 12 blocos funcionais, persistência e interface.
 - tests/mock_roblox.lua: tipos e serviços básicos simulados.
 - tests/mock_scheduler.lua: tempo virtual, entrada e consultas espaciais para integração.
 - tests/test_cases.lua: 59 cenários de integração.

@@ -6,7 +6,7 @@ Entrega original local de **25/10/2026**, agora publicada com os testes em `Zynt
 
 ## Resultado
 
-O arquivo RespawnHUD.lua foi corrigido na própria pasta ShiKopo. Foram mantidas as cinco abas e os blocos de funcionalidades, com um runtime compartilhado para trabalho sob demanda, cancelamento e limpeza.
+O arquivo principal (atualmente ShiKopo.lua, antes RespawnHUD.lua) foi corrigido na própria pasta ShiKopo. Foram mantidas as cinco abas e os blocos de funcionalidades, com um runtime compartilhado para trabalho sob demanda, cancelamento e limpeza.
 
 A suíte final aprovou **143 casos**, sem falhas: 84 existentes, 52 novos cenários de integração e sete regressões do verificador. Os quatro arquivos Lua também passaram pela compilação Luau nativa.
 
@@ -108,7 +108,7 @@ Não há garantia de atomicidade para todas as APIs de executor. O backup e a ve
 
 A animação remota foi removida. O principal não contém HttpGet nem baixa módulos para iniciar.
 
-A reexecução após teleporte usa conteúdo de **ShiKopo/RespawnHUD.lua no espaço de arquivos do executor**, quando a opção estiver ligada e as APIs necessárias existirem. Essa cópia deve ser mantida atualizada pelo usuário; alterar a pasta Downloads não a sincroniza.
+A reexecução após teleporte usa conteúdo de **ShiKopo/ShiKopo.lua no espaço de arquivos do executor**, quando a opção estiver ligada e as APIs necessárias existirem. Essa cópia deve ser mantida atualizada pelo usuário; alterar a pasta Downloads não a sincroniza.
 
 Esta revisão está publicada na branch main de Zyntra074/ShiKopo. Comandos antigos que apontam para outros repositórios não garantem carregar esta revisão.
 
@@ -179,7 +179,7 @@ A análise estática adicional não encontrou globais acidentais fora dos nomes 
 ## Como testar no seu uso
 
 1. Reconecte ao jogo para remover a instância antiga.
-2. Carregue o RespawnHUD.lua atualizado desta pasta.
+2. Carregue o ShiKopo.lua atualizado desta pasta.
 3. Teste primeiro com tudo desligado.
 4. Em Configs → Desempenho, compare Econômico e Equilibrado.
 5. Ligue os recursos que utiliza, um por vez. Inventário e terreno têm orçamentos próprios.

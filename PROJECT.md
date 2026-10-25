@@ -1,10 +1,10 @@
-# Estado real do ShiKopo — 2.1.1
+# Estado real do ShiKopo — 2.1.2
 
 Atualizado em 25/10/2026.
 
 ## Arquitetura implementada
 
-A distribuição possui um arquivo principal único: RespawnHUD.lua. A modularização física proposta anteriormente não foi executada. Os blocos internos permanecem no principal, para manter a distribuição em um arquivo.
+A distribuição possui um arquivo principal único: ShiKopo.lua. A modularização física proposta anteriormente não foi executada. Os blocos internos permanecem no principal, para manter a distribuição em um arquivo.
 
 O runtime compartilhado possui:
 
@@ -38,11 +38,11 @@ A interface e o ConfigManager ficam no mesmo arquivo. Existem cinco abas e 53 co
 | Refatorar para arquivos modules/ e ui/ | Não implementado; não é pré-requisito desta revisão |
 | Medição de FPS, física e permissões em jogo real | Não realizada |
 | Confirmar origem e licença | Pendente de informação do autor |
-| Publicação em GitHub | Revisão 2.1.1 e suíte de testes publicadas em Zyntra074/ShiKopo, main |
+| Publicação em GitHub | Revisão 2.1.2 e suíte de testes publicadas em Zyntra074/ShiKopo, main |
 
 ## Manutenção
 
 Validar sintaxe com Luau nativo e executar tests/run_all.py após mudanças funcionais. Comparações do simulador são evidência de trabalho/ciclo de vida, sem substituir perfil de desempenho no cliente real.
 
-Por solicitação explícita do proprietário em 25/10/2026, GitHub é a fonte oficial do script e cada alteração concluída e validada deve ser publicada em Zyntra074/ShiKopo, main. As orientações antigas para outro repositório foram substituídas. Cópias locais são temporárias para preparação e testes. A suíte completa está em tests/ e as evidências da versão atual em reports/2026-10-25-shikopo/. A pasta reports/2026-10-25 conserva a entrega histórica.
+Por solicitação explícita do proprietário em 25/10/2026, GitHub é a fonte oficial do script e cada alteração concluída e validada deve ser publicada em Zyntra074/ShiKopo, main. As orientações antigas para outro repositório foram substituídas. Cópias locais são temporárias para preparação e testes. A suíte completa está em tests/ e as evidências da versão atual em reports/2026-10-25-shikopo-lua/. A pasta reports/2026-10-25-shikopo preserva a troca de marca. A pasta reports/2026-10-25 conserva a entrega histórica.
 

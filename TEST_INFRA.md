@@ -1,8 +1,8 @@
-# Infraestrutura de testes — ShiKopo 2.1.1
+# Infraestrutura de testes — ShiKopo 2.1.2
 
 Revisão de 25/10/2026. As metas anteriores de uma arquitetura modular futura foram substituídas pela descrição dos testes realmente existentes.
 
-A suíte completa está publicada em [tests/](tests/). Evidências da renomeação: [reports/2026-10-25-shikopo/](reports/2026-10-25-shikopo/). A pasta reports/2026-10-25 conserva a validação histórica da versão 2.1.0.
+A suíte completa está publicada em [tests/](tests/). Evidências da versão atual: [reports/2026-10-25-shikopo-lua/](reports/2026-10-25-shikopo-lua/). A troca de marca está registrada em reports/2026-10-25-shikopo/. A pasta reports/2026-10-25 conserva a validação histórica da versão 2.1.0.
 
 ## Ambiente
 
@@ -65,7 +65,7 @@ Não foi calculado percentual de cobertura por linha ou branch.
 ## Benchmark
 
 ~~~powershell
-python tests/benchmark_hub.py --before CAMINHO_DO_ORIGINAL --after RespawnHUD.lua --luau CAMINHO_DO_LUAU --output benchmark.json
+python tests/benchmark_hub.py --before CAMINHO_DO_ORIGINAL --after ShiKopo.lua --luau CAMINHO_DO_LUAU --output benchmark.json
 ~~~
 
 São cenários determinísticos de 10 s a 60 quadros/s, com semente fixa. Medem callbacks, desenhos, tarefas e consultas, não FPS nem tempo de execução do cliente Roblox.

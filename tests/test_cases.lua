@@ -499,7 +499,7 @@ end)
 
 test("ShiKopo aparece no menu, boas-vindas e notificações",function()
     local r=setup()
-    assert(r.Version=="2.1.1" and r.Gui.Name=="ShiKopoGui")
+    assert(r.Version=="2.1.2" and r.Gui.Name=="ShiKopoGui")
     assert(getgenv().ShiKopoRuntime==r and getgenv().ShiKopoLoaded)
     local welcome,title=false,false
     for _,obj in ipairs(r.Gui:GetDescendants()) do
