@@ -1,0 +1,13 @@
+
+test_continue_outside_loop_is_rejected (test_syntax_regressions.NativeSyntaxRegressions.test_continue_outside_loop_is_rejected) ... ok
+test_continue_string_is_preserved (test_syntax_regressions.NativeSyntaxRegressions.test_continue_string_is_preserved) ... ok
+test_luau_type_annotation_is_supported (test_syntax_regressions.NativeSyntaxRegressions.test_luau_type_annotation_is_supported) ... ok
+test_missing_compiler_does_not_skip_validation (test_syntax_regressions.NativeSyntaxRegressions.test_missing_compiler_does_not_skip_validation) ... ok
+test_missing_end_is_rejected (test_syntax_regressions.NativeSyntaxRegressions.test_missing_end_is_rejected) ... ok
+test_missing_file_is_not_accepted (test_syntax_regressions.NativeSyntaxRegressions.test_missing_file_is_not_accepted) ... ok
+test_valid_continue_in_loop (test_syntax_regressions.NativeSyntaxRegressions.test_valid_continue_in_loop) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 0.173s
+
+OK

@@ -2,6 +2,8 @@
 
 Revisão de 25/10/2026. As metas anteriores de uma arquitetura modular futura foram substituídas pela descrição dos testes realmente existentes.
 
+A suíte completa está publicada em [tests/](tests/). Evidências da revalidação: [reports/2026-10-25/](reports/2026-10-25/).
+
 ## Ambiente
 
 - Python 3.12.

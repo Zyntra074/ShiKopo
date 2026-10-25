@@ -1,5 +1,14 @@
 # Changelog
 
+## Publicação completa — 25/10/2026
+
+- Recuperados e publicados os 13 arquivos da suíte de testes que faltavam no GitHub.
+- Reexecutados os 143 casos e a compilação nativa dos quatro fontes Lua.
+- Publicadas evidências e comparação de contadores em reports/2026-10-25/.
+- Corrigidos o repositório de destino e o fluxo de manutenção em AGENTS.md e .agents/rules/.
+- GitHub definido pelo proprietário como fonte oficial das próximas alterações.
+- O conteúdo do script já publicado é idêntico ao das duas cópias locais recebidas.
+
 ## 2.1.0 — 25/10/2026
 
 - Corrigidas inicialização sem Drawing, chamada inexistente ao desligar Cursor Aim e variáveis de alvo com escopo errado.
@@ -21,5 +30,5 @@
 - Validação de sintaxe usa compilador Luau nativo; ampliada suíte para 143 casos.
 - Documentação atualizada para a arquitetura efetivamente entregue.
 
-A revisão foi feita localmente. Não houve publicação remota nem medição de ganho de FPS no Roblox.
+As correções foram feitas inicialmente em entrega local e depois publicadas em Zyntra074/ShiKopo. Não houve medição de ganho de FPS no Roblox.
 

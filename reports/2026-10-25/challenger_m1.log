@@ -1,0 +1,52 @@
+==================================================
+      DreezHub Milestone 1 Challenger Tests       
+==================================================
+
+--- [Suite 1] CFrame Multiplications & Inverses ---
+  [PASS] CFrame identity multiplication (cf * ident == ident * cf == cf)
+  [PASS] CFrame associativity ((A * B) * C == A * (B * C))
+  [PASS] CFrame inverse cancellation (cf * cf:Inverse() == Identity)
+  [PASS] CFrame inverse of product ((A * B):Inverse() == B:Inverse() * A:Inverse())
+  [PASS] CFrame stress: 100 forward and 100 inverse chained multiplications with drift check
+  [PASS] CFrame 12-argument constructor: Correctly preserved full rotation matrix components
+
+--- [Suite 2] Camera WorldToViewportPoint Edge Cases ---
+  [PASS] WorldToViewportPoint: Center point in front (depth=10, screen=(960, 540), onScreen=true)
+  [PASS] WorldToViewportPoint: Point behind camera (rel.Z=50, depth=-50, onScreen=false)
+  [PASS] WorldToViewportPoint: Point at camera position (depth=0, onScreen=false)
+  [PASS] WorldToViewportPoint: Outside FOV horizontally (X=10000, depth=10, onScreen=false)
+  [PASS] WorldToViewportPoint: Outside FOV vertically (Y=10000, depth=10, onScreen=false)
+
+--- [Suite 3] Signal Lifecycle & Stress ---
+  [PASS] Signal: 1,000 connections created, fired, and disconnected in reverse order (all listeners cleaned)
+  [PASS] Signal: 10,000 alternating connect/disconnect in tight loop (5,000 remaining active)
+  [PASS] Signal re-entrancy: Listener disconnects self during Fire (subsequent Fire excludes it)
+  [PASS] Signal re-entrancy: Listener connected during Fire does not execute until next Fire
+  [PASS] Signal: Multiple Disconnect() calls are safely idempotent (no error, listeners remain 0)
+  [PASS] Signal: Error isolation (failing listener did not abort subsequent listeners)
+
+--- [Suite 4] verify_syntax.py AST Validator Probes ---
+  [PASS] verify_syntax (Valid): Functions, closures & varargs
+  [PASS] verify_syntax (Valid): Metatables & OOP
+  [PASS] verify_syntax (Valid): Repeat-until & conditionals
+  [PASS] verify_syntax (Valid): Multiline strings & comments
+  [PASS] verify_syntax (Valid Luau): continue in numeric for loop
+  [PASS] verify_syntax (Valid Luau): continue in generic for loop
+  [PASS] verify_syntax (Valid Luau): continue in while loop
+  [PASS] verify_syntax (Valid Luau): continue in repeat-until loop
+  [PASS] verify_syntax (Edge Case): Variable named continue_count
+  [PASS] verify_syntax (Edge Case): String literal containing word continue
+  [PASS] verify_syntax (Edge Case): Table field access with continue: tbl.continue
+  [PASS] verify_syntax (Edge Case): Function named continueAction
+  [PASS] verify_syntax (Catch Invalid): Missing function end correctly rejected (Syntax Error: C:/Users/Ekon/AppData/Loca...)
+  [PASS] verify_syntax (Catch Invalid): Unclosed string literal correctly rejected (Syntax Error: C:/Users/Ekon/AppData/Loca...)
+  [PASS] verify_syntax (Catch Invalid): Invalid token character correctly rejected (Syntax Error: C:/Users/Ekon/AppData/Loca...)
+  [PASS] verify_syntax (Catch Invalid): Missing then in if statement correctly rejected (Syntax Error: C:/Users/Ekon/AppData/Loca...)
+  [PASS] verify_syntax (Catch Invalid): Invalid assignment target correctly rejected (Syntax Error: C:/Users/Ekon/AppData/Loca...)
+  [PASS] verify_syntax (Catch Invalid): Malformed binary expression correctly rejected (Syntax Error: C:/Users/Ekon/AppData/Loca...)
+  [PASS] verify_syntax (Catch Invalid): Mismatched parentheses correctly rejected (Syntax Error: C:/Users/Ekon/AppData/Loca...)
+
+==================================================
+Challenger Test Results: 36 passed, 0 failed.
+==================================================
+

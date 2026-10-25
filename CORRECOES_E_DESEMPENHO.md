@@ -1,6 +1,6 @@
 # Correções e desempenho — ShiKopo / DreeZy-HUB 2.1.0
 
-Entrega local de **25/10/2026**.
+Entrega original local de **25/10/2026**, agora publicada com os testes em `Zyntra074/ShiKopo`. Evidências: [reports/2026-10-25/](reports/2026-10-25/).
 
 ## Resultado
 
@@ -108,7 +108,7 @@ A animação remota foi removida. O principal não contém HttpGet nem baixa mó
 
 A reexecução após teleporte usa conteúdo de **DreeZyHub/RespawnHUD.lua no espaço de arquivos do executor**, quando a opção estiver ligada e as APIs necessárias existirem. Essa cópia deve ser mantida atualizada pelo usuário; alterar a pasta Downloads não a sincroniza.
 
-Não foi publicado código no GitHub. Os comandos antigos que apontam para o branch main não garantem carregar esta revisão.
+Esta revisão está publicada na branch main de Zyntra074/ShiKopo. Comandos antigos que apontam para outros repositórios não garantem carregar esta revisão.
 
 ## Situação dos 26 achados da auditoria
 
@@ -160,7 +160,7 @@ Ambiente: Python 3.12.14, Lupa 2.8 e Luau 0.744 oficial.
 
 Há testes de falha de serviço, ausência de Drawing, 50 alternâncias, troca rápida de estado, cancelamento de mapa/respawn/clique, roundtrip/rollback/backup de configuração, frequência em 144 Hz, 45 segundos de decoração e 50 reconstruções de favoritos.
 
-Os logs e contadores ficam em:
+Na entrega original, os logs e contadores foram guardados localmente em:
 
 **C:\Users\Ekon\Downloads\ShiKopo_Correcoes_2026-10-25**
 
@@ -169,6 +169,8 @@ Os logs e contadores ficam em:
 - testes_finais/integration.log;
 - demais logs das suítes;
 - diff do principal e manifesto de integridade.
+
+Para esta publicação, os testes e o benchmark foram reexecutados. Seus resultados atuais estão em [reports/2026-10-25/](reports/2026-10-25/), com logs, contadores e manifesto dos arquivos publicados. A cópia original e as ferramentas intermediárias continuam no arquivo local e não são dependências da distribuição.
 
 A análise estática adicional não encontrou globais acidentais fora dos nomes esperados do Roblox/executor. O analisador Luau isolado não possui os tipos Roblox: seus diagnósticos de tipos/serviços não foram apresentados como validação tipada completa.
 

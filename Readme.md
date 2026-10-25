@@ -1,10 +1,10 @@
 # DreeZy-HUB 2.1.0
 
-Revisão local de 25/10/2026, com correções funcionais, encerramento de recursos e otimizações de trabalho. O programa continua distribuído em **RespawnHUD.lua**, um único arquivo, com blocos internos e um runtime compartilhado.
+Revisão de 25/10/2026, publicada em `Zyntra074/ShiKopo` com os testes e evidências, com correções funcionais, encerramento de recursos e otimizações de trabalho. O programa continua distribuído em **RespawnHUD.lua**, um único arquivo, com blocos internos e um runtime compartilhado.
 
 ## Usar a versão corrigida
 
-1. Use **RespawnHUD.lua desta pasta**. Os antigos comandos que baixam o branch main do GitHub não foram atualizados por esta revisão e podem carregar outra versão.
+1. Use **RespawnHUD.lua da branch main de [Zyntra074/ShiKopo](https://github.com/Zyntra074/ShiKopo/blob/main/RespawnHUD.lua)**. Este é o repositório oficial deste trabalho; comandos antigos que apontam para outros repositórios podem carregar outra versão.
 2. Se a versão antiga já está ativa, reconecte ao jogo antes do primeiro teste. Não é possível desfazer de fora as tarefas que a versão antiga não registrou.
 3. Execute o conteúdo do arquivo local no ambiente de execução compatível que você já utiliza.
 4. Em **Configs → Desempenho**, selecione **Econômico** se a prioridade for reduzir o custo dos recursos visuais.
@@ -72,6 +72,12 @@ Para utilizá-la, o executor precisa oferecer fila após teleporte e leitura de 
 
 Alterar o arquivo em Downloads não atualiza automaticamente a cópia do espaço do executor.
 
+## Fluxo de manutenção
+
+Por solicitação do proprietário em 25/10/2026, o GitHub é a fonte oficial do script. Cada alteração concluída deve ser validada e publicada neste repositório junto com testes e documentação pertinentes. As cópias locais são temporárias para preparação e testes. Consulte [AGENTS.md](AGENTS.md).
+
+A suíte e as evidências desta publicação estão em [tests/](tests/) e [reports/2026-10-25/](reports/2026-10-25/).
+
 ## Estrutura real
 
 - RespawnHUD.lua: runtime, 12 blocos funcionais, persistência e interface.
@@ -125,7 +131,7 @@ As escolhas seguem a orientação de reservar o render step para trabalho necess
 
 ## Origem e licença
 
-A cópia recebida menciona DreeZy como autor e dois repositórios diferentes. A relação entre eles não foi confirmada. Esta revisão local não foi publicada em nenhum deles.
+A cópia recebida menciona DreeZy como autor e dois repositórios diferentes. A relação entre eles não foi confirmada. O proprietário autorizou a publicação desta revisão em `Zyntra074/ShiKopo`; isso não confirma a autoria ou licença do código original.
 
 A distribuição recebida não possui texto completo de licença. Não foi criada uma licença em nome do autor. Os avisos originais sobre detecção e consequências do uso de scripts continuam relevantes; não há garantia de indetectabilidade ou compatibilidade com todos os executores.
 

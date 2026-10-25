@@ -1,0 +1,169 @@
+{
+  "version": "2.1.0",
+  "date": "2026-10-25",
+  "repository": "Zyntra074/ShiKopo",
+  "total_cases": 143,
+  "lua_files_compiled": 4,
+  "files": [
+    {
+      "path": ".agents/rules/dreezhub_workflow.md",
+      "bytes": 485,
+      "sha256": "8aa7d7ae7434bb0f813174538fbf8a6426b61585387cd56e092047fd0e41a64b"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 157,
+      "sha256": "5658d96880598eabedf8c317837304321665f0868c1d75f4446451a51a6bd912"
+    },
+    {
+      "path": "AGENTS.md",
+      "bytes": 1621,
+      "sha256": "de9d086f83eed48399df05a02a6eab66dcf11d8659dfdc56d188e75c06aa2c21"
+    },
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 2475,
+      "sha256": "42c6deb9e8b75184802aaa2daa6d3a281f8b5e23931ebedbcf8bbdc3340b3a2c"
+    },
+    {
+      "path": "CORRECOES_E_DESEMPENHO.md",
+      "bytes": 12185,
+      "sha256": "d4ec0e266cfbfd1c360a8bec87ec5e698602760f9054c96191f41e0706bc1a34"
+    },
+    {
+      "path": "PROJECT.md",
+      "bytes": 3020,
+      "sha256": "d97ed86d1a3f3e19c329362f85b34db103394777b47c3e5609d8e9f50bd1d9de"
+    },
+    {
+      "path": "Readme.md",
+      "bytes": 9297,
+      "sha256": "805fcc75c2a9fecb7231c270e62ea120a791ddf8b5ae0e387e7256a174f4f73c"
+    },
+    {
+      "path": "reports/2026-10-25/benchmark.json",
+      "bytes": 2554,
+      "sha256": "1a3880b91412eec233dee3de845322e78aac2dbebbc59bd6380828d70b08df7f"
+    },
+    {
+      "path": "reports/2026-10-25/challenger_deep.log",
+      "bytes": 1260,
+      "sha256": "c71482078b849d19089c1e0a0b88a48ef0ae4edd78fd289b3de16e3aa33e9031"
+    },
+    {
+      "path": "reports/2026-10-25/challenger_m1.log",
+      "bytes": 3760,
+      "sha256": "41a75f635a06f35ea55601afa33e86d8cd47083cbb925068f6af902382a9ec41"
+    },
+    {
+      "path": "reports/2026-10-25/challenger_probe.log",
+      "bytes": 1696,
+      "sha256": "15108548dfea071c572e6c664fdb96d70eace5d92b29dae21c0e45d1a3823b42"
+    },
+    {
+      "path": "reports/2026-10-25/integration.log",
+      "bytes": 3037,
+      "sha256": "5664a154499b9c2e142075505b8a6ffcfbc4c1c323c6a1cd8e7bac7141431093"
+    },
+    {
+      "path": "reports/2026-10-25/README.md",
+      "bytes": 2273,
+      "sha256": "449a74fb488a0afcb11fddcbc391aabfe31f751cee2efb50530c4bd4773d4faf"
+    },
+    {
+      "path": "reports/2026-10-25/results.json",
+      "bytes": 507,
+      "sha256": "8452fa9a21eba1c86dd520732825419020e365584e70c27f581bba80a91b2615"
+    },
+    {
+      "path": "reports/2026-10-25/smoke.log",
+      "bytes": 1853,
+      "sha256": "f705051ea582159b908301c00fa388c26b677a5d591cefb8c390bac5dad5f26a"
+    },
+    {
+      "path": "reports/2026-10-25/syntax_regressions.log",
+      "bytes": 1011,
+      "sha256": "2380f04408f98adbf0ca366bc69d22b523a18ce4cf0763436ae23515fffce744"
+    },
+    {
+      "path": "requirements-dev.txt",
+      "bytes": 10,
+      "sha256": "c355c313ec4744320b1e0d22e7e70465d899a48e8c62293578ddff95d0672c6b"
+    },
+    {
+      "path": "RespawnHUD.lua",
+      "bytes": 328376,
+      "sha256": "0146472c127215d3da72fe50f35ecdaa42633ed3aa37ef6a67cb051dcb0edc92"
+    },
+    {
+      "path": "TEST_INFRA.md",
+      "bytes": 3895,
+      "sha256": "152becc0843ffb982a61247a57e02a708a0c4a907fbada2de8a6977cec78311d"
+    },
+    {
+      "path": "tests/benchmark_hub.py",
+      "bytes": 3737,
+      "sha256": "f2255716bfe81fa49172f57be4275c654fde0d921dfbc6f4169ac2a1d9cd9ba8"
+    },
+    {
+      "path": "tests/mock_roblox.lua",
+      "bytes": 58717,
+      "sha256": "b845dbe3fc479b593cf80f8a853ba2f5dcb3c6603ad0d0a50cb7535078f70a62"
+    },
+    {
+      "path": "tests/mock_scheduler.lua",
+      "bytes": 6437,
+      "sha256": "8c113e3aea8610d7906e9af9d7c9a66ed13c0ef4b99000300fb828109d877909"
+    },
+    {
+      "path": "tests/run_all.py",
+      "bytes": 2386,
+      "sha256": "4a8ca1a906c8e01db3e63b79078386afff083298edc8415d7696f86b4d272f23"
+    },
+    {
+      "path": "tests/run_tests.py",
+      "bytes": 20017,
+      "sha256": "219685127db14c0b7454c0a40b0fef39b45e209f85ffba692cb461e45a419eca"
+    },
+    {
+      "path": "tests/setup_luau.py",
+      "bytes": 1367,
+      "sha256": "f99ea9e5674c46d7a75eb02191efcdec851d85da179dd9794f71e5222a31b7b7"
+    },
+    {
+      "path": "tests/test_cases.lua",
+      "bytes": 21540,
+      "sha256": "0da0c8281817f403188fcc5a58cce7d61dadc7d25a30f98e00e078a16253572f"
+    },
+    {
+      "path": "tests/test_challenger_m1.py",
+      "bytes": 26513,
+      "sha256": "87b78834f78be76b62d86b2da7b011a1d487cee291564da0582415a982a9e01e"
+    },
+    {
+      "path": "tests/test_challenger_probe.py",
+      "bytes": 21285,
+      "sha256": "fe6aab8c541ed39052d649d3947110d85e70cea47d144101ae47185b248aed61"
+    },
+    {
+      "path": "tests/test_challenger_v2_deep.py",
+      "bytes": 13103,
+      "sha256": "7882c5ea8f588b73a7476020470aa4d852f910608d49539168c6dd59b38237d5"
+    },
+    {
+      "path": "tests/test_hub.py",
+      "bytes": 2498,
+      "sha256": "5d488499ac1d874dc0124a55a420675bb562031b82373e9796d3225f217fc806"
+    },
+    {
+      "path": "tests/test_syntax_regressions.py",
+      "bytes": 1468,
+      "sha256": "6b78f4843e0b8d4b8b61afffd3b08bc5586846baba15287f3b37e89435dfa29f"
+    },
+    {
+      "path": "tests/verify_syntax.py",
+      "bytes": 2799,
+      "sha256": "9bb634fdf74e807afecb34cffc874abf9c1da76a67218446dd2faea2a686c956"
+    }
+  ]
+}

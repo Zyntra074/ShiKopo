@@ -1,0 +1,55 @@
+[PASS] Inicializa cinco abas e todos os contratos
+[PASS] Ocioso não executa jobs, raycasts, varreduras ou desenhos
+[PASS] Inicializa sem Drawing e salva configurações
+[PASS] Controle indisponível reverte o switch
+[PASS] Desligar Cursor Aim não lança erro
+[PASS] Aimbot não escreve globais de alvo
+[PASS] Aimbot só recebe quadros enquanto habilitado
+[PASS] Filtro de FOV descarta antes do raycast
+[PASS] Aquisição visível funciona com linha livre
+[PASS] Filtro de amigos usa cache e guarda false
+[PASS] Tp player restaura colisões originais true e false
+[PASS] Hitbox restaura tamanho e para processamento
+[PASS] Hitbox limita frequência a 10 Hz no perfil padrão
+[PASS] ESP aloca apenas cinco desenhos sem inventário
+[PASS] ESP cria inventário somente sob demanda
+[PASS] ESP ignora inventário distante
+[PASS] ESP tolera personagem sem Humanoid
+[PASS] High Alert alterna bordas e setas independentemente
+[PASS] Mapa vazio não varre a cada quadro
+[PASS] Minimapa limita estruturas e libera pool ao desligar terreno
+[PASS] Minimapa tolera câmera temporariamente ausente
+[PASS] Perfil econômico reduz frequência de ESP
+[PASS] Respawn cancelado não usa destino apagado
+[PASS] Shift Lock restaura AutoRotate e offset anteriores
+[PASS] Atalho de mouse funciona no Auto Click
+[PASS] Auto Click de teclado não alterna seu próprio gatilho
+[PASS] AutoShot libera mouse ao desativar
+[PASS] Configuração roundtrip inclui atalhos, tamanho e alvo
+[PASS] Exceções de jogadores persistem junto com a interface
+[PASS] Configuração legada com booleano ESP continua legível
+[PASS] JSON malformado recupera backup anterior
+[PASS] Tipo inválido é rejeitado antes de alterar estado
+[PASS] Falha de leitura impede Save e não sobrescreve arquivo
+[PASS] Falha de aplicação retorna false e reverte mudanças
+[PASS] Decoração é opcional, limitada e para ao desativar
+[PASS] Cinquenta alternâncias não acumulam jobs
+[PASS] Reexecução substitui a instância anterior
+[PASS] Remover GUI encerra recursos e permite nova inicialização
+[PASS] Falha de bootstrap limpa flag e permite recuperação
+[PASS] Encerramento com cliques e minimapa ativos não deixa estado
+[PASS] Foco e gameProcessed impedem atalhos acidentais
+[PASS] Diagnóstico contabiliza trabalho sem obrigar medição de custo
+[PASS] Limite de atualização é estável a 144 quadros por segundo
+[PASS] Minimapa desligado não consulta estruturas ao ajustar terreno
+[PASS] Desligar durante consulta do mapa cancela publicação
+[PASS] Dígitos do teclado virtual correspondem aos KeyCodes reais
+[PASS] Reativação rápida do clique cancela pulso anterior
+[PASS] Morte durante reposicionamento preserva o novo destino
+[PASS] Versão de configuração desconhecida não é aplicada
+[PASS] Binds de mouse podem ser consultados em TP Click
+[PASS] Efeito decorativo prolongado não acumula conexões concluídas
+[PASS] Reconstruir favoritos não acumula listeners de entrada
+Integration: 52 passed, 0 failed.
+
+

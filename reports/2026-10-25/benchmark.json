@@ -1,0 +1,96 @@
+{
+  "note": "Contadores em simulação determinística de 10 s a 60 quadros/s. Não são medições de FPS ou tempo no cliente Roblox.",
+  "scenarios": {
+    "ocioso": {
+      "before": {
+        "Seconds": 10,
+        "FullMapScans": 0,
+        "FrameServiceConnections": 9,
+        "FrameServiceCallbacks": 5400,
+        "SignalErrors": 0,
+        "PendingTasks": 81,
+        "NetworkCalls": 1,
+        "SpatialQueries": 0,
+        "Snowflakes": 77,
+        "AsyncErrors": 0,
+        "Raycasts": 0,
+        "ActiveDrawings": 25
+      },
+      "after": {
+        "Seconds": 10,
+        "FullMapScans": 0,
+        "FrameServiceConnections": 0,
+        "FrameServiceCallbacks": 0,
+        "SignalErrors": 0,
+        "PendingTasks": 0,
+        "NetworkCalls": 0,
+        "SpatialQueries": 0,
+        "Snowflakes": 0,
+        "AsyncErrors": 0,
+        "Raycasts": 0,
+        "ActiveDrawings": 0
+      }
+    },
+    "esp_20": {
+      "before": {
+        "Seconds": 10,
+        "FullMapScans": 0,
+        "FrameServiceConnections": 9,
+        "FrameServiceCallbacks": 5400,
+        "SignalErrors": 0,
+        "PendingTasks": 81,
+        "NetworkCalls": 1,
+        "SpatialQueries": 0,
+        "Snowflakes": 77,
+        "AsyncErrors": 0,
+        "Raycasts": 0,
+        "ActiveDrawings": 485
+      },
+      "after": {
+        "Seconds": 10,
+        "FullMapScans": 0,
+        "PendingTasks": 0,
+        "FrameServiceConnections": 1,
+        "FrameServiceCallbacks": 600,
+        "SignalErrors": 0,
+        "ESPUpdates": 300,
+        "NetworkCalls": 0,
+        "SpatialQueries": 0,
+        "Snowflakes": 0,
+        "AsyncErrors": 0,
+        "Raycasts": 0,
+        "ActiveDrawings": 100
+      }
+    },
+    "mapa_vazio": {
+      "before": {
+        "Seconds": 10,
+        "FullMapScans": 601,
+        "FrameServiceConnections": 10,
+        "FrameServiceCallbacks": 6000,
+        "SignalErrors": 0,
+        "PendingTasks": 81,
+        "NetworkCalls": 1,
+        "SpatialQueries": 0,
+        "Snowflakes": 77,
+        "AsyncErrors": 0,
+        "Raycasts": 0,
+        "ActiveDrawings": 25
+      },
+      "after": {
+        "Seconds": 10,
+        "FullMapScans": 0,
+        "FrameServiceConnections": 1,
+        "FrameServiceCallbacks": 600,
+        "SignalErrors": 0,
+        "PendingTasks": 0,
+        "NetworkCalls": 0,
+        "SpatialQueries": 10,
+        "Snowflakes": 0,
+        "AsyncErrors": 0,
+        "Raycasts": 0,
+        "ActiveDrawings": 0
+      }
+    }
+  }
+}
